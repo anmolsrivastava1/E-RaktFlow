@@ -4,7 +4,7 @@ import {StyleSheet, Keyboard} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from '../screens/HomeScreen';
+import HomeStackNavigator from '../navigations/HomeStackNavigator';
 import EventsScreen from '../screens/EventsScreen';
 import ChatScreen from '../screens/ChatScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -28,6 +28,7 @@ const TabsNavigator = props => {
     <Tab.Navigator
       initialRouteName="HomeStack"
       screenOptions={{
+        headerShown: false,
         tabBarShowLabel: true,
         tabBarInactiveTintColor: '#999',
         tabBarActiveTintColor: '#066DE6',
@@ -35,22 +36,24 @@ const TabsNavigator = props => {
         tabBarStyle: {
           ...styles.tabsNavigator,
           backgroundColor: 'white',
-          bottom: isKeyboardShown ? -10 : 0,
+          bottom: isKeyboardShown ? -50 : 0,
         },
       }}>
       <Tab.Screen
-        name="Home"
+        name="HomeStack"
         options={{
+          tabBarLabel: 'Home',
           tabBarIcon: ({color, focused}) => {
             let iconName = focused ? 'home' : 'home-outline';
             return <Ionicons name={iconName} color={color} size={26} />;
           },
         }}
-        children={() => <HomeScreen />}
+        children={() => <HomeStackNavigator />}
       />
       <Tab.Screen
-        name="Events"
+        name="EventsStack"
         options={{
+          tabBarLabel: 'Events',
           tabBarIcon: ({color, focused}) => {
             let iconName = focused ? 'calendar' : 'calendar-outline';
             return <Ionicons name={iconName} color={color} size={28} />;
@@ -59,8 +62,9 @@ const TabsNavigator = props => {
         children={() => <EventsScreen />}
       />
       <Tab.Screen
-        name="Chat"
+        name="ChatStack"
         options={{
+          tabBarLabel: 'Chat',
           tabBarIcon: ({color, focused}) => {
             let iconName = focused
               ? 'chatbox-ellipses'
@@ -71,8 +75,9 @@ const TabsNavigator = props => {
         children={() => <ChatScreen />}
       />
       <Tab.Screen
-        name="Profiles"
+        name="ProfileStack"
         options={{
+          tabBarLabel: 'Profile',
           tabBarIcon: ({color, focused}) => {
             let iconName = focused ? 'person' : 'person-outline';
             return <Ionicons name={iconName} color={color} size={28} />;
