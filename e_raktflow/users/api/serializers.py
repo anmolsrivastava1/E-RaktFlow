@@ -90,7 +90,7 @@ class UserLoginSerializer(serializers.Serializer):
             totp = pyotp.TOTP(s=user.mfa_hash, interval=300)
 
             send_email(
-                subject="Verify your email",
+                subject="Login OTP",
                 to=[user.email],
                 message="Your OTP is {}".format(totp.now()),
             )

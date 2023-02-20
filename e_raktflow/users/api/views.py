@@ -1,3 +1,4 @@
+import pyotp
 from rest_framework import viewsets
 from rest_framework.mixins import RetrieveModelMixin, CreateModelMixin, UpdateModelMixin
 from rest_framework.viewsets import GenericViewSet
@@ -7,6 +8,7 @@ from e_raktflow.users.api.serializers import (
     UserSignUpSerializer,
     UserVerifyOtpSerializer,
 )
+from e_raktflow.users.email import send_email
 
 from e_raktflow.users.models import User
 from rest_framework.response import Response
@@ -45,7 +47,15 @@ class ResendOtpViewset(GenericViewSet, RetrieveModelMixin):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.send_otp()
+        instance.mfa_hash = pyotp.random_base32()
+        instance.save()
+        totp = pyotp.TOTP(s=instance.mfa_hash, interval=300)
+
+        send_email(
+            subject="Resend Otp",
+            to=[instance.email],
+            message="Your OTP is {}".format(totp.now()),
+        )
         return Response({"message": "OTP sent successfully"})
 
 
