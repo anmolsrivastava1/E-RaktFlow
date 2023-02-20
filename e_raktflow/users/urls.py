@@ -7,7 +7,7 @@ from django.urls import path
 # )
 from e_raktflow.users.api.views import (
     ResendOtpViewset,
-    Test,
+    # Test,
     UserLoginViewset,
     UserSignUpViewset,
 )
