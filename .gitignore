@@ -268,7 +268,7 @@ tags
 
 ### Project template
 
-edly/media/
+e_raktflow/media/
 
 .pytest_cache/
 
@@ -276,8 +276,8 @@ edly/media/
 .env
 
 # ### Migrations
-edly/*/migrations/*.py
-edly/*/migrations/*.pyc
+# e_raktflow/*/migrations/*.py
+# e_raktflow/*/migrations/*.pyc
 
 ### .env
 .env
