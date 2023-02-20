@@ -64,12 +64,16 @@ class UserLoginSerializer(serializers.Serializer):
     password = serializers.CharField(required=False, write_only=True)
     message = serializers.SerializerMethodField(read_only=True)
     tokens = serializers.SerializerMethodField(read_only=True)
+    uuid = serializers.SerializerMethodField(read_only=True)
 
     def get_message(self, obj):
         return self.context["message"]
 
     def get_tokens(self, obj):
         return self.context.get("tokens")
+
+    def get_uuid(self, obj):
+        return self.context["user"].uuid
 
     def create(self, validated_data):
         email = validated_data.get("email", None)
