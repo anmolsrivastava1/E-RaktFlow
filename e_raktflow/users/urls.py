@@ -26,11 +26,11 @@ urlpatterns = [
         view=ResendOtpViewset.as_view({"get": "retrieve"}),
         name="verify_otp",
     ),
-    path(
-        "test/",
-        view=Test.as_view({"post": "create"}),
-        name="test",
-    ),
+    # path(
+    #     "test/",
+    #     view=Test.as_view({"post": "create"}),
+    #     name="test",
+    # ),
     # path("~redirect/", view=user_redirect_view, name="redirect"),
     # path("~update/", view=user_update_view, name="update"),
     # path("<str:username>/", view=user_detail_view, name="detail"),
