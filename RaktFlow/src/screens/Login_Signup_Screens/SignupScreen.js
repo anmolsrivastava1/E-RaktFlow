@@ -9,11 +9,19 @@ import {
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
 const SignupScreen = () => {
   const [fullName, setFullName] = React.useState(null);
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
+
+  const navigation = useNavigation();
+
+  const handleLoginPressed = () => {
+    console.log("'log in' pressed: navigating to LogIn Screen");
+    navigation.navigate('LogIn');
+  };
 
   return (
     <ScrollView style={{...styles.screen}}>
@@ -106,7 +114,9 @@ const SignupScreen = () => {
         </TouchableOpacity>
         <View style={{...styles.footer}}>
           <Text style={{...styles.footerText}}>Already have an account? </Text>
-          <Text style={{...styles.hyperLinkText}}>Log in</Text>
+          <TouchableOpacity activeOpacity={0.9} onPress={handleLoginPressed}>
+            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

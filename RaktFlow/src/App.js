@@ -1,17 +1,22 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, SafeAreaView, StyleSheet} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
-
-import TabsNavigator from './navigations/TabsNavigator';
+import RootNavigation from './navigations/index';
 
 function App() {
   return (
-    <NavigationContainer>
+    <SafeAreaView style={{...styles.screen}}>
       <StatusBar barStyle="light-content" backgroundColor="#066DE6" />
-      <TabsNavigator />
-    </NavigationContainer>
+      <RootNavigation />
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    display: 'flex',
+    flex: 1,
+  },
+});
 
 export default App;

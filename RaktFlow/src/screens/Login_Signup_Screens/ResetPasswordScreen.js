@@ -9,19 +9,27 @@ import {
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
-const LoginScreen = () => {
+const ResetPasswordScreen = () => {
   const [emailValue, setEmailValue] = React.useState(null);
-  const [passwordValue, setPasswordValue] = React.useState(null);
+
+  const navigation = useNavigation();
+
+  const handleSignUpPressed = () => {
+    console.log("'sign up' pressed: navigating to SignUp screen");
+    // validate user
+    navigation.navigate('LogIn');
+  };
 
   return (
     <ScrollView style={{...styles.screen}}>
       <View style={{...styles.view}}>
         {/* Title */}
         <View style={{marginBottom: 20}}>
-          <Text style={{...styles.titleText}}>Log In</Text>
+          <Text style={{...styles.titleText}}>Reset your password</Text>
           <Text style={{...styles.subText}}>
-            Welcome back, you've been missed!
+            Enter your registered email, to get a confirmation mail.
           </Text>
         </View>
         {/* ENTRY: EMAIL */}
@@ -49,41 +57,19 @@ const LoginScreen = () => {
             />
           </View>
         </View>
-        {/* ENTRY PASSWORD */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Password
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'lock-closed-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your password"
-              placeholderTextColor={'grey'}
-              selectionColor={'#888'}
-              returnKeyType={'search'}
-              value={passwordValue}
-              onChangeText={value => {
-                setPasswordValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
-        <Text style={{...styles.hyperLinkText}}>Forgot password?</Text>
         {/* LOGIN BUTTON */}
         <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
           <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Log In</Text>
+            <Text style={{...styles.buttonText}}>Send</Text>
           </View>
         </TouchableOpacity>
         <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Don't have an account? </Text>
-          <Text style={{...styles.hyperLinkText}}>Sign up</Text>
+          <Text style={{...styles.footerText}}>
+            Already know the password?{' '}
+          </Text>
+          <TouchableOpacity activeOpacity={0.9} onPress={handleSignUpPressed}>
+            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -162,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default ResetPasswordScreen;
