@@ -303,6 +303,14 @@ SOCIALACCOUNT_ADAPTER = "e_raktflow.users.adapters.SocialAccountAdapter"
 SOCIALACCOUNT_FORMS = {"signup": "e_raktflow.users.forms.UserSocialSignupForm"}
 
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
 # Your stuff...
 # ------------------------------------------------------------------------------
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
