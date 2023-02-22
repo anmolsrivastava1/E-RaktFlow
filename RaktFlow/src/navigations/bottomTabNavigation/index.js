@@ -36,7 +36,6 @@ const TabsNavigator = props => {
         tabBarStyle: {
           ...styles.tabsNavigator,
           backgroundColor: 'white',
-          // bottom: isKeyboardShown ? -50 : 0,
           display: isKeyboardShown ? 'none' : 'flex',
         },
       }}>
