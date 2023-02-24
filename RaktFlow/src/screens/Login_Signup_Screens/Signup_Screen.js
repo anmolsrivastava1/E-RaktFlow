@@ -79,7 +79,7 @@ const SignupScreen = () => {
               placeholder="Enter your first name"
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
-              returnKeyType={'search'}
+              returnKeyType={'next'}
               value={firstNameValue}
               onChangeText={value => {
                 setFirstNameValue(value);
@@ -104,7 +104,7 @@ const SignupScreen = () => {
               placeholder="Enter your full name"
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
-              returnKeyType={'search'}
+              returnKeyType={'next'}
               value={lastNameValue}
               onChangeText={value => {
                 setLastNameValue(value);
@@ -130,7 +130,7 @@ const SignupScreen = () => {
               textContentType="emailAddress"
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
-              returnKeyType={'search'}
+              returnKeyType={'next'}
               value={emailValue}
               onChangeText={value => {
                 setEmailValue(value);
@@ -156,7 +156,7 @@ const SignupScreen = () => {
               textContentType="password"
               placeholderTextColor={'grey'}
               selectionColor={'#888'}
-              returnKeyType={'search'}
+              returnKeyType={'next'}
               value={passwordValue}
               onChangeText={value => {
                 setPasswordValue(value);

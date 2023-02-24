@@ -55,7 +55,7 @@ const LoginScreen = () => {
               placeholder="Enter you email address"
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
-              returnKeyType={'search'}
+              returnKeyType={'next'}
               value={emailValue}
               onChangeText={value => {
                 setEmailValue(value);

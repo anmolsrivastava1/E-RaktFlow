@@ -7,12 +7,15 @@ import {
   Button,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const {firstName} = useSelector(state => state.globalState);
   return (
     <ScrollView style={{...styles.screen}}>
@@ -53,13 +56,19 @@ const HomeScreen = () => {
               />
               <Text style={{...styles.cardText}}>Donate Blood</Text>
             </View>
-            <View style={{...styles.cardWrapper}}>
-              <Image
-                style={{...styles.cardImg}}
-                source={require('../../../assets/images/blood1_logo.png')}
-              />
-              <Text style={{...styles.cardText}}>Request Blood</Text>
-            </View>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => {
+                navigation.navigate('RequestBlood');
+              }}>
+              <View style={{...styles.cardWrapper}}>
+                <Image
+                  style={{...styles.cardImg}}
+                  source={require('../../../assets/images/blood1_logo.png')}
+                />
+                <Text style={{...styles.cardText}}>Request Blood</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           {/* LINE TWO */}
           <View

@@ -4,7 +4,7 @@ import {StyleSheet, Keyboard} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from '../../screens/Home/Home_Screen';
+import HomeTabStackNavigator from '../homeTabStackNavigation/index';
 import EventsScreen from '../../screens/Events/Events_Screen';
 import ChatScreen from '../../screens/Chat/Chat_Screen';
 import ProfileScreen from '../../screens/Profile/Profile_Screen';
@@ -51,7 +51,7 @@ const TabsNavigator = props => {
             return <Ionicons name={iconName} color={color} size={26} />;
           },
         }}
-        children={() => <HomeScreen />}
+        component={HomeTabStackNavigator}
       />
       <Tab.Screen
         name="EventsStack"
