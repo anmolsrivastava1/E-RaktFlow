@@ -4,10 +4,10 @@ import {StyleSheet, Keyboard} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from '../../screens/Home/HomeScreen';
-import EventsScreen from '../../screens/Events/EventsScreen';
-import ChatScreen from '../../screens/Chat/ChatScreen';
-import ProfileScreen from '../../screens/Profile/ProfileScreen';
+import HomeScreen from '../../screens/Home/Home_Screen';
+import EventsScreen from '../../screens/Events/Events_Screen';
+import ChatScreen from '../../screens/Chat/Chat_Screen';
+import ProfileScreen from '../../screens/Profile/Profile_Screen';
 
 const Tab = createBottomTabNavigator();
 

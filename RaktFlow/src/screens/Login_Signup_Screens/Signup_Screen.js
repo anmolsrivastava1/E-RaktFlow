@@ -11,12 +11,29 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
+import {axiosPostRequest} from '../../api/axios_requests';
+
 const SignupScreen = () => {
-  const [fullName, setFullName] = React.useState(null);
+  const [firstName, setFirstName] = React.useState(null);
+  const [lastName, setLastName] = React.useState(null);
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
+  const [uuidValue, setUuidValue] = React.useState(null);
 
   const navigation = useNavigation();
+
+  const handleSignUpBTN = async data => {
+    // navigate to the ConfirmEmail_Screen
+    navigation.navigate('ConfirmEmail');
+    // make an axios post request for OTP
+    await axiosPostRequest(data)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   const handleLoginPressed = () => {
     console.log("'log in' pressed: navigating to LogIn Screen");
@@ -31,10 +48,35 @@ const SignupScreen = () => {
           <Text style={{...styles.titleText}}>Sign Up</Text>
           <Text style={{...styles.subText}}>Welcome to RaktFlow</Text>
         </View>
-        {/* ENTRY: NAME */}
+        {/* ENTRY: FIRST NAME */}
         <View style={{marginBottom: 20}}>
           <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Full name
+            First name
+          </Text>
+          <View
+            style={{
+              ...styles.textInputWrapper,
+              backgroundColor: 'white',
+            }}>
+            <Ionicons name={'person-outline'} color={'#888'} size={20} />
+            <TextInput
+              placeholder="Enter your first name"
+              placeholderTextColor={'#888'}
+              selectionColor={'#888'}
+              returnKeyType={'search'}
+              value={firstName}
+              onChangeText={value => {
+                setFirstName(value);
+              }}
+              onSubmitEditing={() => {}}
+              style={{...styles.textInput}}
+            />
+          </View>
+        </View>
+        {/* ENTRY: LAST NAME */}
+        <View style={{marginBottom: 20}}>
+          <Text style={{...styles.subTitleText, marginBottom: 5}}>
+            Last name
           </Text>
           <View
             style={{
@@ -47,9 +89,9 @@ const SignupScreen = () => {
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
               returnKeyType={'search'}
-              value={fullName}
+              value={lastName}
               onChangeText={value => {
-                setFullName(value);
+                setLastName(value);
               }}
               onSubmitEditing={() => {}}
               style={{...styles.textInput}}
@@ -69,6 +111,7 @@ const SignupScreen = () => {
             <Ionicons name={'mail-outline'} color={'#888'} size={20} />
             <TextInput
               placeholder="Enter your email address"
+              textContentType="emailAddress"
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
               returnKeyType={'search'}
@@ -94,6 +137,7 @@ const SignupScreen = () => {
             <Ionicons name={'lock-closed-outline'} color={'#888'} size={20} />
             <TextInput
               placeholder="Enter your password"
+              textContentType="password"
               placeholderTextColor={'grey'}
               selectionColor={'#888'}
               returnKeyType={'search'}
@@ -106,8 +150,17 @@ const SignupScreen = () => {
             />
           </View>
         </View>
-        {/* LOGIN BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
+        {/* SIGNUP BUTTON */}
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => {
+            handleSignUpBTN({
+              first_name: firstName,
+              last_name: lastName,
+              email: emailValue,
+              password: passwordValue,
+            });
+          }}>
           <View style={{...styles.button}}>
             <Text style={{...styles.buttonText}}>Sign Up</Text>
           </View>

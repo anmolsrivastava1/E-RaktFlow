@@ -1,14 +1,19 @@
 import React from 'react';
 import {StatusBar, SafeAreaView, StyleSheet} from 'react-native';
+// REDUX
+import {Provider} from 'react-redux';
+import store from './redux/store';
 
 import RootNavigation from './navigations/index';
 
 function App() {
   return (
-    <SafeAreaView style={{...styles.screen}}>
-      <StatusBar barStyle="light-content" backgroundColor="#066DE6" />
-      <RootNavigation />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={{...styles.screen}}>
+        <StatusBar barStyle="light-content" backgroundColor="#066DE6" />
+        <RootNavigation />
+      </SafeAreaView>
+    </Provider>
   );
 }
 
