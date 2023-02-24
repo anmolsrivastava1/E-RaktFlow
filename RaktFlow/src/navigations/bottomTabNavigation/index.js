@@ -33,6 +33,9 @@ const TabsNavigator = props => {
         tabBarInactiveTintColor: '#999',
         tabBarActiveTintColor: '#066DE6',
         tabBarKeyboardHidesTabBar: true,
+        tabBarLabelStyle: {
+          fontFamily: 'Poppins-SemiBold',
+        },
         tabBarStyle: {
           ...styles.tabsNavigator,
           backgroundColor: 'white',

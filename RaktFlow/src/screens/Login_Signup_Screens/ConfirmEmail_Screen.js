@@ -10,15 +10,43 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+// REDUX - DISPATCHERS AND SELECTORS
+import {useSelector, useDispatch} from 'react-redux';
+
+import {axiosOtpPostRequest} from '../../api/axios_requests';
+import {
+  setAccessToken,
+  setRefreshToken,
+  toggleUserLoggedIn,
+} from '../../redux/reducer';
 
 const ConfirmEmailScreen = () => {
+  // DISPATCHER
+  const dispatch = useDispatch();
+  // SELECTOR
+  const {uuid} = useSelector(state => state.globalState);
+  // STATES
   const [otpValue, setOtpValue] = React.useState(null);
 
   const navigation = useNavigation();
 
   const handleLogInPressed = () => {
-    console.log("'log in' pressed: navigating to SignUp screen");
     navigation.navigate('LogIn');
+  };
+
+  const handleConfirmPressed = async () => {
+    // make an axios post request for OTP
+    const data = {otp: otpValue};
+    await axiosOtpPostRequest(data, uuid)
+      .then(res => {
+        console.log(res.data);
+        dispatch(setAccessToken(res.data.token.access));
+        dispatch(setRefreshToken(res.data.token.refresh));
+        dispatch(toggleUserLoggedIn(true));
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -51,13 +79,15 @@ const ConfirmEmailScreen = () => {
               onChangeText={value => {
                 setOtpValue(value);
               }}
-              onSubmitEditing={() => {}}
+              onSubmitEditing={value => {
+                setOtpValue(value);
+              }}
               style={{...styles.textInput}}
             />
           </View>
         </View>
         {/* CONFIRM BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
+        <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
           <View style={{...styles.button}}>
             <Text style={{...styles.buttonText}}>Confirm</Text>
           </View>

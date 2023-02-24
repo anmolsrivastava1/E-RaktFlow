@@ -10,7 +10,7 @@ function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={{...styles.screen}}>
-        <StatusBar barStyle="light-content" backgroundColor="#066DE6" />
+        <StatusBar barStyle="dark-content" backgroundColor="#F4F4F6" />
         <RootNavigation />
       </SafeAreaView>
     </Provider>

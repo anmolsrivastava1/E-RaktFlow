@@ -10,12 +10,23 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+// REDUX - DISPATCHERS AND SELECTORS
+import {useSelector, useDispatch} from 'react-redux';
 
 import {axiosPostRequest} from '../../api/axios_requests';
+import {
+  setUuid,
+  setFirstName,
+  setLastName,
+  setEmail,
+} from '../../redux/reducer';
 
 const SignupScreen = () => {
-  const [firstName, setFirstName] = React.useState(null);
-  const [lastName, setLastName] = React.useState(null);
+  // DISPATCHER
+  const dispatch = useDispatch();
+  // STATES
+  const [firstNameValue, setFirstNameValue] = React.useState(null);
+  const [lastNameValue, setLastNameValue] = React.useState(null);
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
   const [uuidValue, setUuidValue] = React.useState(null);
@@ -28,7 +39,12 @@ const SignupScreen = () => {
     // make an axios post request for OTP
     await axiosPostRequest(data)
       .then(res => {
-        console.log(res.data);
+        console.log(res.data.uuid);
+        setUuidValue(res.data.uuid);
+        dispatch(setUuid(res.data.uuid));
+        dispatch(setFirstName(firstNameValue));
+        dispatch(setLastName(lastNameValue));
+        dispatch(setEmail(emailValue));
       })
       .catch(error => {
         console.log(error);
@@ -64,9 +80,9 @@ const SignupScreen = () => {
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
               returnKeyType={'search'}
-              value={firstName}
+              value={firstNameValue}
               onChangeText={value => {
-                setFirstName(value);
+                setFirstNameValue(value);
               }}
               onSubmitEditing={() => {}}
               style={{...styles.textInput}}
@@ -89,9 +105,9 @@ const SignupScreen = () => {
               placeholderTextColor={'#888'}
               selectionColor={'#888'}
               returnKeyType={'search'}
-              value={lastName}
+              value={lastNameValue}
               onChangeText={value => {
-                setLastName(value);
+                setLastNameValue(value);
               }}
               onSubmitEditing={() => {}}
               style={{...styles.textInput}}
@@ -155,8 +171,8 @@ const SignupScreen = () => {
           activeOpacity={0.9}
           onPress={() => {
             handleSignUpBTN({
-              first_name: firstName,
-              last_name: lastName,
+              first_name: firstNameValue,
+              last_name: lastNameValue,
               email: emailValue,
               password: passwordValue,
             });
