@@ -1,12 +1,14 @@
 import axios from 'axios';
 
+const BASE_URL = 'http://54.144.84.249:2001/';
+
 export const axiosPostRequest = async data => {
   const res = await axios({
     method: 'post',
     url: 'http://54.144.84.249:2001/users/signup/',
     data: data,
   });
-  return res;
+  return Promise.resolve(res);;
 };
 
 export const axiosOtpPostRequest = async (data, uuid) => {
@@ -43,3 +45,17 @@ export const LoginRequest = async ({ emailValue, passwordValue }) => {
     return Promise.reject(err.response?.data);
   }
 };
+
+
+export const ResendOtp = async (uuid, email) => {
+  try {
+    const res = await axios.get(`${BASE_URL}users/resend-otp/${uuid}/?email=${email}`);
+
+    return Promise.resolve(res);
+
+  }
+  catch (err) {
+    return Promise.reject(err.response?.data);
+  }
+
+}

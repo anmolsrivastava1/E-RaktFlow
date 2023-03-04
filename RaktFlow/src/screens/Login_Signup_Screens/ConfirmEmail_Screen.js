@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
 import { useSelector, useDispatch } from 'react-redux';
 
-import { axiosOtpPostRequest } from '../../api/axios_requests';
+import { axiosOtpPostRequest, ResendOtp } from '../../api/axios_requests';
 import {
   setAccessToken,
   setRefreshToken,
@@ -27,10 +27,11 @@ const ConfirmEmailScreen = () => {
   const dispatch = useDispatch();
   // SELECTOR
   const { uuid } = useSelector(state => state.globalState);
+  const { email } = useSelector(state => state.globalState);
+
   // STATES
   const [otpValue, setOtpValue] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-
   const navigation = useNavigation();
 
   const handleLogInPressed = () => {
@@ -39,7 +40,7 @@ const ConfirmEmailScreen = () => {
 
   const handleConfirmPressed = async () => {
     // make an axios post request for OTP
-    if (otpValue.length !== 6) {
+    if (otpValue === null | otpValue.length !== 6) {
       Alert.alert("Otp should be 6 digits");
       return
     }
@@ -67,6 +68,17 @@ const ConfirmEmailScreen = () => {
 
   };
 
+  const handleResendOtp = async () => {
+    console.log(uuid, email);
+    await ResendOtp(uuid, email)
+      .then(res => {
+        Alert.alert(res.data.message);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   return (
     <ScrollView style={{...styles.screen}}>
       <View style={{...styles.view}}>
@@ -78,8 +90,8 @@ const ConfirmEmailScreen = () => {
           </Text>
         </View>
         {/* ENTRY: OTP */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
+        <View style={{ marginBottom: 10 }}>
+          <Text style={{ ...styles.subTitleText, marginBottom: 5 }}>
             Enter OTP
           </Text>
           <View
@@ -104,6 +116,17 @@ const ConfirmEmailScreen = () => {
             />
           </View>
         </View>
+        {/* RESEND OTP */}
+        <View style={{ ...styles.resendView }}>
+          <Text >Haven't Recieved a Verification Code?  </Text>
+          <TouchableOpacity activeOpacity={0.9} onPress={handleResendOtp}>
+            <View>
+              <Text style={{ ...styles.hyperLinkText }}>Resend OTP</Text>
+            </View>
+          </TouchableOpacity>
+
+        </View>
+
         {/* CONFIRM BUTTON */}
         {isLoading ? <ActivityIndicator size="large" color="#1B2D48" /> :
           <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
@@ -138,6 +161,11 @@ const styles = StyleSheet.create({
     padding: 20,
     // backgroundColor: 'lightgreen',
   },
+  resendView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   textInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -151,7 +179,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     borderRadius: 10,
-    marginVertical: 15,
+    marginVertical: 10,
   },
   footer: {
     display: 'flex',
