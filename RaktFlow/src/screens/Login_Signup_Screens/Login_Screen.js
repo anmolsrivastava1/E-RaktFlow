@@ -26,6 +26,7 @@ import { LoginRequest } from '../../api/axios_requests';
 const LoginScreen = () => {
 	const [emailValue, setEmailValue] = React.useState(null);
 	const [passwordValue, setPasswordValue] = React.useState(null);
+	const [isLoading, setIsLoading] = React.useState(false);
 
 	const dispatch = useDispatch();
 
