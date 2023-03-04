@@ -10,13 +10,21 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleUserLoggedIn } from '../../redux/reducer';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const {firstName} = useSelector(state => state.globalState);
+  const { firstName } = useSelector(state => state.globalState);
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(toggleUserLoggedIn(false));  
+  }
+
   return (
     <ScrollView style={{...styles.screen}}>
       <View style={{...styles.headerWrapper}}>
@@ -29,13 +37,15 @@ const HomeScreen = () => {
             <Text style={{...styles.userNameText}}>{`${firstName} !`}</Text>
           </View>
         </View>
-        <View style={{...styles.rightHeaderWrapper}}>
-          <View style={{...styles.alertWrapper}}>
-            <Ionicons
-              name={'notifications-outline'}
-              color={'#1B2D48'}
-              size={26}
-            />
+        <View style={{ ...styles.rightHeaderWrapper }}>
+          <View style={{ ...styles.alertWrapper }}>
+            <TouchableOpacity onPress={handleLogOut}>
+              <Ionicons
+                name={'notifications-outline'}
+                color={'#1B2D48'}
+                size={26}
+              />
+            </TouchableOpacity >
           </View>
         </View>
       </View>

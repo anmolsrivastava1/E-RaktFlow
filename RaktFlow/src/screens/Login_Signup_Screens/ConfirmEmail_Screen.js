@@ -100,7 +100,7 @@ const ConfirmEmailScreen = () => {
               onSubmitEditing={value => {
                 setOtpValue(value);
               }}
-              style={{...styles.textInput}}
+              keyboardType={'numeric'}
             />
           </View>
         </View>
