@@ -6,14 +6,16 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import {axiosPostRequest} from '../../api/axios_requests';
+import { axiosPostRequest } from '../../api/axios_requests';
 import {
   setUuid,
   setFirstName,
@@ -30,25 +32,39 @@ const SignupScreen = () => {
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
   const [uuidValue, setUuidValue] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
+
 
   const navigation = useNavigation();
 
   const handleSignUpBTN = async data => {
     // navigate to the ConfirmEmail_Screen
-    navigation.navigate('ConfirmEmail');
+    setIsLoading(true);
     // make an axios post request for OTP
-    await axiosPostRequest(data)
-      .then(res => {
-        console.log(res.data.uuid);
-        setUuidValue(res.data.uuid);
-        dispatch(setUuid(res.data.uuid));
-        dispatch(setFirstName(firstNameValue));
-        dispatch(setLastName(lastNameValue));
-        dispatch(setEmail(emailValue));
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (data.firstNameValue !== null && data.lastNameValue !== null && data.emailValue !== null && data.passwordValue !== null) {
+      await axiosPostRequest(data)
+        .then(res => {
+          console.log(res.data.uuid);
+          setUuidValue(res.data.uuid);
+          dispatch(setUuid(res.data.uuid));
+          dispatch(setFirstName(firstNameValue));
+          dispatch(setLastName(lastNameValue));
+          dispatch(setEmail(emailValue));
+
+          navigation.navigate('ConfirmEmail');
+        })
+        .catch(error => {
+          for (let x in error.response.data) {
+            Alert.alert(String(x), String(error.response.data[x]));
+            break
+          }
+        });
+    }
+    else {
+      Alert.alert('Please enter all the details');
+    }
+    setIsLoading(false);
+
   };
 
   const handleLoginPressed = () => {
@@ -167,24 +183,27 @@ const SignupScreen = () => {
           </View>
         </View>
         {/* SIGNUP BUTTON */}
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={() => {
-            handleSignUpBTN({
-              first_name: firstNameValue,
-              last_name: lastNameValue,
-              email: emailValue,
-              password: passwordValue,
-            });
-          }}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Sign Up</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Already have an account? </Text>
+        {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> :
+          <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={() => {
+              handleSignUpBTN({
+                first_name: firstNameValue,
+                last_name: lastNameValue,
+                email: emailValue,
+                password: passwordValue,
+              });
+            }}>
+            <View style={{ ...styles.button }}>
+              <Text style={{ ...styles.buttonText }}>Sign Up</Text>
+            </View>
+          </TouchableOpacity>
+        }
+
+        <View style={{ ...styles.footer }}>
+          <Text style={{ ...styles.footerText }}>Already have an account? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleLoginPressed}>
-            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+            <Text style={{ ...styles.hyperLinkText }}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>

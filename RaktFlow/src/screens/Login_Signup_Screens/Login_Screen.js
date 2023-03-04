@@ -6,6 +6,8 @@ import {
 	TextInput,
 	StyleSheet,
 	TouchableOpacity,
+	ActivityIndicator,
+	Alert
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -43,9 +45,8 @@ const LoginScreen = () => {
 	};
 
 	const handleLogInPressed = async () => {
-
+		setIsLoading(true);
 		console.log(emailValue, passwordValue);
-
 
 		if (emailValue !== null && passwordValue !== null) {
 			try {
@@ -61,13 +62,15 @@ const LoginScreen = () => {
 				}
 			}
 			catch (error) {
-				console.log(error);
+				Alert.alert("Error", "Invalid email or password")
 			}
 
 		}
 		else {
 			console.log("Email OR password cannot be empty");
 		}
+
+		setIsLoading(false);
 
 	}
 
@@ -137,11 +140,14 @@ const LoginScreen = () => {
 					<Text style={{ ...styles.hyperLinkText }}>Forgot password?</Text>
 				</TouchableOpacity>
 				{/* LOGIN BUTTON */}
-				<TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
-					<View style={{ ...styles.button }}>
-						<Text style={{ ...styles.buttonText }}>Log In</Text>
-					</View>
-				</TouchableOpacity>
+				{isLoading ? <ActivityIndicator size="large" color="#066DE6" /> :
+					<TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
+						<View style={{ ...styles.button }}>
+							<Text style={{ ...styles.buttonText }}>Log In</Text>
+						</View>
+					</TouchableOpacity>
+				}
+
 				<View style={{ ...styles.footer }}>
 					<Text style={{ ...styles.footerText }}>Don't have an account? </Text>
 					<TouchableOpacity activeOpacity={0.9} onPress={handleSignUpPressed}>

@@ -6,14 +6,16 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import {axiosOtpPostRequest} from '../../api/axios_requests';
+import { axiosOtpPostRequest } from '../../api/axios_requests';
 import {
   setAccessToken,
   setRefreshToken,
@@ -24,9 +26,10 @@ const ConfirmEmailScreen = () => {
   // DISPATCHER
   const dispatch = useDispatch();
   // SELECTOR
-  const {uuid} = useSelector(state => state.globalState);
+  const { uuid } = useSelector(state => state.globalState);
   // STATES
   const [otpValue, setOtpValue] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const navigation = useNavigation();
 
@@ -36,7 +39,14 @@ const ConfirmEmailScreen = () => {
 
   const handleConfirmPressed = async () => {
     // make an axios post request for OTP
-    const data = {otp: otpValue};
+    if (otpValue.length !== 6) {
+      Alert.alert("Otp should be 6 digits");
+      return
+    }
+    setIsLoading(true)
+
+    const data = { otp: otpValue };
+
     await axiosOtpPostRequest(data, uuid)
       .then(res => {
         console.log(res.data);
@@ -45,8 +55,16 @@ const ConfirmEmailScreen = () => {
         dispatch(toggleUserLoggedIn(true));
       })
       .catch(error => {
-        console.log(error);
+        try {
+          Alert.alert(String(Object.keys(error)[0]), String(error[Object.keys(error)[0]]))
+        }
+        catch (error) {
+          console.log(error);
+        }
       });
+
+    setIsLoading(false)
+
   };
 
   return (
@@ -87,15 +105,18 @@ const ConfirmEmailScreen = () => {
           </View>
         </View>
         {/* CONFIRM BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Confirm</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Already have an account? </Text>
+        {isLoading ? <ActivityIndicator size="large" color="#1B2D48" /> :
+          <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
+            <View style={{ ...styles.button }}>
+              <Text style={{ ...styles.buttonText }}>Confirm</Text>
+            </View>
+          </TouchableOpacity>
+        }
+
+        <View style={{ ...styles.footer }}>
+          <Text style={{ ...styles.footerText }}>Already have an account? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
-            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+            <Text style={{ ...styles.hyperLinkText }}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -21,7 +21,8 @@ export const axiosOtpPostRequest = async (data, uuid) => {
     return res;
   }
   catch (err) {
-    console.log(Promise.reject(err.response.data));
+    // console.log(Promise.reject(err.response.data));
+    return Promise.reject(err.response?.data);
   }
 
 };
