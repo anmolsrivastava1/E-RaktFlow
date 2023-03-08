@@ -6,14 +6,16 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import {axiosOtpPostRequest} from '../../api/axios_requests';
+import { axiosOtpPostRequest, ResendOtp } from '../../api/axios_requests';
 import {
   setAccessToken,
   setRefreshToken,
@@ -24,10 +26,12 @@ const ConfirmEmailScreen = () => {
   // DISPATCHER
   const dispatch = useDispatch();
   // SELECTOR
-  const {uuid} = useSelector(state => state.globalState);
+  const { uuid } = useSelector(state => state.globalState);
+  const { email } = useSelector(state => state.globalState);
+
   // STATES
   const [otpValue, setOtpValue] = React.useState(null);
-
+  const [isLoading, setIsLoading] = React.useState(false);
   const navigation = useNavigation();
 
   const handleLogInPressed = () => {
@@ -36,7 +40,14 @@ const ConfirmEmailScreen = () => {
 
   const handleConfirmPressed = async () => {
     // make an axios post request for OTP
-    const data = {otp: otpValue};
+    if (otpValue === null | otpValue.length !== 6) {
+      Alert.alert("Otp should be 6 digits");
+      return
+    }
+    setIsLoading(true)
+
+    const data = { otp: otpValue };
+
     await axiosOtpPostRequest(data, uuid)
       .then(res => {
         console.log(res.data);
@@ -45,9 +56,28 @@ const ConfirmEmailScreen = () => {
         dispatch(toggleUserLoggedIn(true));
       })
       .catch(error => {
+        try {
+          Alert.alert(String(Object.keys(error)[0]), String(error[Object.keys(error)[0]]))
+        }
+        catch (error) {
+          console.log(error);
+        }
+      });
+
+    setIsLoading(false)
+
+  };
+
+  const handleResendOtp = async () => {
+    console.log(uuid, email);
+    await ResendOtp(uuid, email)
+      .then(res => {
+        Alert.alert(res.data.message);
+      })
+      .catch(error => {
         console.log(error);
       });
-  };
+  }
 
   return (
     <ScrollView style={{...styles.screen}}>
@@ -60,8 +90,8 @@ const ConfirmEmailScreen = () => {
           </Text>
         </View>
         {/* ENTRY: OTP */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
+        <View style={{ marginBottom: 10 }}>
+          <Text style={{ ...styles.subTitleText, marginBottom: 5 }}>
             Enter OTP
           </Text>
           <View
@@ -82,20 +112,34 @@ const ConfirmEmailScreen = () => {
               onSubmitEditing={value => {
                 setOtpValue(value);
               }}
-              style={{...styles.textInput}}
+              keyboardType={'numeric'}
             />
           </View>
         </View>
+        {/* RESEND OTP */}
+        <View style={{ ...styles.resendView }}>
+          <Text >Haven't Recieved a Verification Code?  </Text>
+          <TouchableOpacity activeOpacity={0.9} onPress={handleResendOtp}>
+            <View>
+              <Text style={{ ...styles.hyperLinkText }}>Resend OTP</Text>
+            </View>
+          </TouchableOpacity>
+
+        </View>
+
         {/* CONFIRM BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Confirm</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Already have an account? </Text>
+        {isLoading ? <ActivityIndicator size="large" color="#1B2D48" /> :
+          <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
+            <View style={{ ...styles.button }}>
+              <Text style={{ ...styles.buttonText }}>Confirm</Text>
+            </View>
+          </TouchableOpacity>
+        }
+
+        <View style={{ ...styles.footer }}>
+          <Text style={{ ...styles.footerText }}>Already have an account? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
-            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+            <Text style={{ ...styles.hyperLinkText }}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -117,6 +161,11 @@ const styles = StyleSheet.create({
     padding: 20,
     // backgroundColor: 'lightgreen',
   },
+  resendView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   textInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -130,7 +179,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     borderRadius: 10,
-    marginVertical: 15,
+    marginVertical: 10,
   },
   footer: {
     display: 'flex',

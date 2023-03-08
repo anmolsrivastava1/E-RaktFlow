@@ -31,7 +31,7 @@ export const stateSlice = createSlice({
       state.lastName = action.payload;
     },
     setEmail: (state, action) => {
-      state.email = action.email;
+      state.email = action.payload;
     },
   },
 });
