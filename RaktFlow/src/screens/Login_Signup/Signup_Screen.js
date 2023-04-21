@@ -3,13 +3,12 @@ import {
   View,
   ScrollView,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import styling from '../../styles/Login_Signup/Signup_Style';
+import sy from '../../styles/styling';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
 import {useSelector, useDispatch} from 'react-redux';
@@ -21,6 +20,8 @@ import {
   setLastName,
   setEmail,
 } from '../../redux/reducer';
+import IconTextInput from '../../components/IconTextInput';
+import BgBtn from '../../components/BgBtn';
 
 const SignupScreen = () => {
   // DISPATCHER
@@ -52,140 +53,67 @@ const SignupScreen = () => {
       });
   };
 
+  const handleSignUpPressed = () => {
+    handleSignUpBTN({
+      first_name: firstNameValue,
+      last_name: lastNameValue,
+      email: emailValue,
+      password: passwordValue,
+    });
+  };
+
   const handleLoginPressed = () => {
     console.log("'log in' pressed: navigating to LogIn Screen");
     navigation.navigate('LogIn');
   };
 
   return (
-    <ScrollView style={{...styles.screen}}>
-      <View style={{...styles.view}}>
+    <ScrollView style={{...sy.rgScreen}}>
+      <View style={{...sy.rgScreenView}}>
         {/* Title */}
         <View style={{marginBottom: 20}}>
-          <Text style={{...styles.titleText}}>Sign Up</Text>
-          <Text style={{...styles.subText}}>Welcome to RaktFlow</Text>
+          <Text style={{...sy.bgSbTTxt}}>Sign Up</Text>
+          <Text style={{...sy.rgMdStTxt}}>Welcome to RaktFlow</Text>
         </View>
         {/* ENTRY: FIRST NAME */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            First name
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'person-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your first name"
-              placeholderTextColor={'#888'}
-              selectionColor={'#888'}
-              returnKeyType={'next'}
-              value={firstNameValue}
-              onChangeText={value => {
-                setFirstNameValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="First name"
+          placeholder="Enter your first name"
+          value={firstNameValue}
+          setValue={setFirstNameValue}
+          iconName="person-outline"
+        />
         {/* ENTRY: LAST NAME */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Last name
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'person-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your full name"
-              placeholderTextColor={'#888'}
-              selectionColor={'#888'}
-              returnKeyType={'next'}
-              value={lastNameValue}
-              onChangeText={value => {
-                setLastNameValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="Last name"
+          placeholder="Enter your last name"
+          value={lastNameValue}
+          setValue={setLastNameValue}
+          iconName="person-outline"
+        />
         {/* ENTRY: EMAIL */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Email address
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'mail-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your email address"
-              textContentType="emailAddress"
-              placeholderTextColor={'#888'}
-              selectionColor={'#888'}
-              returnKeyType={'next'}
-              value={emailValue}
-              onChangeText={value => {
-                setEmailValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
-        {/* ENTRY PASSWORD */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Password
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'lock-closed-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your password"
-              textContentType="password"
-              placeholderTextColor={'grey'}
-              selectionColor={'#888'}
-              returnKeyType={'next'}
-              value={passwordValue}
-              onChangeText={value => {
-                setPasswordValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="Email address"
+          placeholder="Enter your email address"
+          value={emailValue}
+          setValue={setEmailValue}
+          iconName="mail-outline"
+        />
+        {/* ENTRY: PASSWORD */}
+        <IconTextInput
+          title="Password"
+          placeholder="Enter your password"
+          value={passwordValue}
+          setValue={setPasswordValue}
+          iconName="lock-closed-outline"
+        />
         {/* SIGNUP BUTTON */}
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={() => {
-            handleSignUpBTN({
-              first_name: firstNameValue,
-              last_name: lastNameValue,
-              email: emailValue,
-              password: passwordValue,
-            });
-          }}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Sign Up</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Already have an account? </Text>
+        <BgBtn title="Sign Up" onPress={handleSignUpPressed} />
+        {/* FOOTER  */}
+        <View style={{...sy.footerView}}>
+          <Text style={{...sy.smRgTTxt}}>Already have an account? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleLoginPressed}>
-            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+            <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -3,14 +3,16 @@ import {
   View,
   ScrollView,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import styling from '../../styles/Login_Signup/Login_Style';
+import sy from '../../styles/styling';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+
+import IconTextInput from '../../components/IconTextInput';
+import BgBtn from '../../components/BgBtn';
 
 const LoginScreen = () => {
   const [emailValue, setEmailValue] = React.useState(null);
@@ -32,80 +34,44 @@ const LoginScreen = () => {
   };
 
   return (
-    <ScrollView style={{...styles.screen}}>
-      <View style={{...styles.view}}>
+    <ScrollView style={{...sy.rgScreen}}>
+      <View style={{...sy.rgScreenView}}>
         {/* Title */}
         <View style={{marginBottom: 20}}>
-          <Text style={{...styles.titleText}}>Log In</Text>
-          <Text style={{...styles.subText}}>
+          <Text style={{...sy.bgSbTTxt}}>Log In</Text>
+          <Text style={{...sy.rgMdStTxt}}>
             Welcome back, you've been missed!
           </Text>
         </View>
         {/* ENTRY: EMAIL */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Email address
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'mail-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter you email address"
-              placeholderTextColor={'#888'}
-              selectionColor={'#888'}
-              returnKeyType={'next'}
-              value={emailValue}
-              onChangeText={value => {
-                setEmailValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="Email address"
+          placeholder="Enter your email address"
+          value={emailValue}
+          setValue={setEmailValue}
+          iconName={'mail-outline'}
+        />
         {/* ENTRY PASSWORD */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Password
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'lock-closed-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your password"
-              placeholderTextColor={'grey'}
-              selectionColor={'#888'}
-              returnKeyType={'search'}
-              value={passwordValue}
-              onChangeText={value => {
-                setPasswordValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="Password"
+          placeholder="Enter your password"
+          value={passwordValue}
+          setValue={setPasswordValue}
+          iconName={'lock-closed-outline'}
+        />
+        {/* HYPERLINK: FORGOT PASSWORD */}
         <TouchableOpacity
           activeOpacity={0.9}
           onPress={handleForgotPasswordPressed}>
-          <Text style={{...styles.hyperLinkText}}>Forgot password?</Text>
+          <Text style={{...sy.smRgHyperLinkTxt}}>Forgot password?</Text>
         </TouchableOpacity>
         {/* LOGIN BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Log In</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Don't have an account? </Text>
+        <BgBtn title="Log In" />
+        {/* HYPERLINK: FOOTER  */}
+        <View style={{...sy.footerView}}>
+          <Text style={{...sy.smRgTTxt}}>Don't have an account? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleSignUpPressed}>
-            <Text style={{...styles.hyperLinkText}}>Sign up</Text>
+            <Text style={{...sy.smRgHyperLinkTxt}}>Sign up</Text>
           </TouchableOpacity>
         </View>
       </View>

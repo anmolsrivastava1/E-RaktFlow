@@ -1,0 +1,31 @@
+import React from 'react';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+
+import sy from '../styles/styling';
+
+const BgBtn = props => {
+  const {title, onPress} = props;
+
+  return (
+    <TouchableOpacity activeOpacity={0.9} onPress={onPress}>
+      <View style={{...styles.button}}>
+        <Text style={{...styles.buttonText}}>{title}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: sy.pClr,
+    alignItems: 'center',
+    padding: 15,
+    marginVertical: 15,
+    borderRadius: 10,
+  },
+  buttonText: {
+    ...sy.mdMdWTxt,
+  },
+});
+
+export default BgBtn;

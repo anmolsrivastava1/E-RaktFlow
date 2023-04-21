@@ -139,20 +139,3 @@ const HomeScreen = () => {
 const styles = StyleSheet.create(styling);
 
 export default HomeScreen;
-
-/* colors:
-Primary Color
-#066DE6
-
-Secondary Color | main icons of homepage
-#2F327D
-
-Text/ Heading color
-#1B2D48
-
-Sub heading text color
-#8992AB
-
-White color
-#FFFFFF
-*/

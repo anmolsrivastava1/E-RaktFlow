@@ -1,17 +1,4 @@
 module.exports = {
-  screen: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  view: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    padding: 20,
-    // backgroundColor: 'lightgreen',
-  },
   textInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',

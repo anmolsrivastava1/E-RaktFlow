@@ -1,96 +1,95 @@
-/* >>>>>>>>>>>>>>>>>>>>> TEXT <<<<<<<<<<<<<<<<<<<<<<< */
-
-/* ---------------- COLORS ----------------- */
-
-exports.Color = {
+module.exports = {
+  /* >>>>>>>>>>>>>>>>>>>>> TEXT <<<<<<<<<<<<<<<<<<<<<<< */
+  /* ---------------- COLORS ----------------- */
   /* Primary Color */
-  pClr: {
-    color: '#066DE6',
-  },
+  pClr: '#066DE6',
   /* Secondary Color  */
-  sClr: {
-    color: '#2F327D',
-  },
+  sClr: '#2F327D',
   /* Heading/Text Color  */
-  tClr: {
-    color: '#1B2D48',
-  },
+  tClr: '#1B2D48',
   /* Sub Heading/Text Color  */
-  stClr: {
-    color: '#8992AB',
-  },
+  stClr: '#8992AB',
   /* White Color  */
-  wClr: {
-    color: '#FFFFFF',
-  },
-};
-
-/* -------------- FONT-FAMILY --------------  */
-
-exports.FontFamily = {
-  popT: {
-    fontFamily: 'Poppins-Thin',
-  },
-  popEL: {
-    fontFamily: 'Poppins-ExtraLight',
-  },
-  popL: {
-    fontFamily: 'Poppins-Light',
-  },
-  popR: {
-    fontFamily: 'Poppins-Regular',
-  },
-  popM: {
+  wClr: '#FFFFFF',
+  /* -------------- FONT-FAMILY --------------  */
+  popT: 'Poppins-Thin',
+  popEL: 'Poppins-ExtraLight',
+  popL: 'Poppins-Light',
+  popR: 'Poppins-Regular',
+  popM: 'Poppins-Medium',
+  popSB: 'Poppins-SemiBold',
+  popB: 'Poppins-Bold',
+  popEB: 'Poppins-ExtraBold',
+  popBlack: 'Poppins-Black',
+  /* -------------- FONT-SIZE --------------- */
+  smTxt: 14,
+  rgTxt: 16,
+  mdTxt: 18,
+  bgTxt: 28,
+  /* ------------- FONT-STYLE ------------------*/
+  // size-weight-color-name
+  smRgHyperLinkTxt: {
+    color: '#066DE6',
+    fontSize: 14,
     fontFamily: 'Poppins-Medium',
   },
-  popSB: {
+  smRgTTxt: {
+    color: '#1B2D48',
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
+  },
+  smSbTTxt: {
+    color: '#1B2D48',
+    fontSize: 14,
     fontFamily: 'Poppins-SemiBold',
   },
-  popB: {
-    fontFamily: 'Poppins-Bold',
-  },
-  popEB: {
-    fontFamily: 'Poppins-ExtraBold',
-  },
-  popBlack: {
-    fontFamily: 'Poppins-Black',
-  },
-};
-
-/* -------------- FONT-SIZE --------------- */
-
-exports.FontSize = {
-  smTxt: {
-    fontSize: 14,
-  },
-  rgTxt: {
+  rgRgTTxt: {
+    color: '#1B2D48',
     fontSize: 16,
+    fontFamily: 'Poppins-Regular',
   },
-  mdTxt: {
+  rgMdStTxt: {
+    color: '#8992AB',
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+  },
+  rgMdTTxt: {
+    color: '#1B2D48',
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+  },
+  mdMdWTxt: {
+    color: '#FFFFFF',
     fontSize: 18,
+    fontFamily: 'Poppins-Medium',
   },
-  bgTxt: {
+  bgSbTTxt: {
+    color: '#1B2D48',
     fontSize: 28,
+    fontFamily: 'Poppins-SemiBold',
   },
-};
-
-/* >>>>>>>>>>>>>>>>>>> DISPLAY <<<<<<<<<<<<<<<<<<<<< */
-
-exports.Display = {
+  /* >>>>>>>>>>>>>>>>>>> DISPLAY <<<<<<<<<<<<<<<<<<<<< */
+  /* --------------- SCREEN ----------------- */
   rgScreen: {
-    height: '100%',
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  rgScreenView: {
     display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'flex-start',
     flexDirection: 'column',
+    height: '100%',
     padding: 20,
   },
-};
-
-exports.FlexView = {
+  /* --------------- FLEX-VIEWS --------------- */
   footerView: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  flexRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 };

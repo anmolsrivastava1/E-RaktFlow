@@ -3,13 +3,12 @@ import {
   View,
   ScrollView,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import styling from '../../styles/Login_Signup/ConfirmEmail_Style';
+import sy from '../../styles/styling';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
 import {useSelector, useDispatch} from 'react-redux';
@@ -20,6 +19,8 @@ import {
   setRefreshToken,
   toggleUserLoggedIn,
 } from '../../redux/reducer';
+import IconTextInput from '../../components/IconTextInput';
+import BgBtn from '../../components/BgBtn';
 
 const ConfirmEmailScreen = () => {
   // DISPATCHER
@@ -51,52 +52,30 @@ const ConfirmEmailScreen = () => {
   };
 
   return (
-    <ScrollView style={{...styles.screen}}>
-      <View style={{...styles.view}}>
+    <ScrollView style={{...sy.rgScreen}}>
+      <View style={{...sy.rgScreenView}}>
         {/* Title */}
         <View style={{marginBottom: 20}}>
-          <Text style={{...styles.titleText}}>Confirm your email</Text>
-          <Text style={{...styles.subText}}>
+          <Text style={{...sy.bgSbTTxt}}>Confirm your email</Text>
+          <Text style={{...sy.rgMdStTxt}}>
             An OTP has been sent to your email address.
           </Text>
         </View>
         {/* ENTRY: OTP */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Enter OTP
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'mail-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter your OTP"
-              placeholderTextColor={'#888'}
-              selectionColor={'#888'}
-              returnKeyType={'search'}
-              value={otpValue}
-              onChangeText={value => {
-                setOtpValue(value);
-              }}
-              onSubmitEditing={value => {
-                setOtpValue(value);
-              }}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="Enter OTP"
+          placeholder="Enter your OTP"
+          value={otpValue}
+          setValue={setOtpValue}
+          iconName={'mail-outline'}
+        />
         {/* CONFIRM BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={handleConfirmPressed}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Confirm</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>Already have an account? </Text>
+        <BgBtn title="Confirm" onPress={handleConfirmPressed} />
+        {/* FOOTER  */}
+        <View style={{...sy.footerView}}>
+          <Text style={{...sy.smRgTTxt}}>Already have an account? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
-            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+            <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>

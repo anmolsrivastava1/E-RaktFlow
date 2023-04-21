@@ -3,14 +3,16 @@ import {
   View,
   ScrollView,
   Text,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import styling from '../../styles/Login_Signup/ResetPassword_Style';
+import sy from '../../styles/styling';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+
+import IconTextInput from '../../components/IconTextInput';
+import BgBtn from '../../components/BgBtn';
 
 const ResetPasswordScreen = () => {
   const [emailValue, setEmailValue] = React.useState(null);
@@ -24,52 +26,30 @@ const ResetPasswordScreen = () => {
   };
 
   return (
-    <ScrollView style={{...styles.screen}}>
-      <View style={{...styles.view}}>
+    <ScrollView style={{...sy.rgScreen}}>
+      <View style={{...sy.rgScreenView}}>
         {/* Title */}
         <View style={{marginBottom: 20}}>
-          <Text style={{...styles.titleText}}>Reset your password</Text>
-          <Text style={{...styles.subText}}>
+          <Text style={{...sy.bgSbTTxt}}>Reset your password</Text>
+          <Text style={{...sy.rgMdStTxt}}>
             Enter your registered email, to get a confirmation mail.
           </Text>
         </View>
         {/* ENTRY: EMAIL */}
-        <View style={{marginBottom: 20}}>
-          <Text style={{...styles.subTitleText, marginBottom: 5}}>
-            Email address
-          </Text>
-          <View
-            style={{
-              ...styles.textInputWrapper,
-              backgroundColor: 'white',
-            }}>
-            <Ionicons name={'mail-outline'} color={'#888'} size={20} />
-            <TextInput
-              placeholder="Enter you email address"
-              placeholderTextColor={'#888'}
-              selectionColor={'#888'}
-              returnKeyType={'search'}
-              value={emailValue}
-              onChangeText={value => {
-                setEmailValue(value);
-              }}
-              onSubmitEditing={() => {}}
-              style={{...styles.textInput}}
-            />
-          </View>
-        </View>
+        <IconTextInput
+          title="Email address"
+          placeholder="Enter your email address"
+          value={emailValue}
+          setValue={setEmailValue}
+          iconName={'mail-outline'}
+        />
         {/* LOGIN BUTTON */}
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
-          <View style={{...styles.button}}>
-            <Text style={{...styles.buttonText}}>Send</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={{...styles.footer}}>
-          <Text style={{...styles.footerText}}>
-            Already know the password?{' '}
-          </Text>
+        <BgBtn title="Send" onPress={() => {}} />
+        {/* FOOTER  */}
+        <View style={{...sy.footerView}}>
+          <Text style={{...sy.smRgTTxt}}>Already know the password? </Text>
           <TouchableOpacity activeOpacity={0.9} onPress={handleSignUpPressed}>
-            <Text style={{...styles.hyperLinkText}}>Log in</Text>
+            <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
           </TouchableOpacity>
         </View>
       </View>
