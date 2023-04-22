@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-import styling from '../../styles/Login_Signup/ResetPassword_Style';
+import {View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
@@ -56,7 +49,5 @@ const ResetPasswordScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create(styling);
 
 export default ResetPasswordScreen;

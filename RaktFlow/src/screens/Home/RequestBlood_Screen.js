@@ -1,18 +1,13 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, Image} from 'react-native';
 import styling from '../../styles/Home/RequestBlood_Style';
+import sy from '../../styles/styling';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
 import CustomTextInput from '../../components/CustomTextInput';
+import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
+import BgBtn from '../../components/BgBtn';
 
 const RequestBloodScreen = () => {
   // Navigation
@@ -30,18 +25,14 @@ const RequestBloodScreen = () => {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   return (
-    <ScrollView style={{...styles.screen}}>
+    <ScrollView style={{flex: 1}}>
       <View style={{...styles.headerWrapper}}>
-        <View style={{position: 'absolute', left: 10}}>
-          <TouchableOpacity
-            activeOpacity={0.9}
-            onPress={() => {
-              navigation.navigate('Home');
-            }}>
-            <Ionicons name="arrow-back" color="#1B2D48" size={28} />
-          </TouchableOpacity>
-        </View>
-        <Text style={{...styles.headerText}}>Request Blood</Text>
+        <BackHeaderArrowBtn
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+        />
+        <Text style={{...sy.md2SbTTxt}}>Request Blood</Text>
       </View>
       {isSubmitted ? (
         <View style={{...styles.sumittedBodyWrapper}}>
@@ -49,15 +40,15 @@ const RequestBloodScreen = () => {
             style={{...styles.logo}}
             source={require('../../../assets/images/check1_logo.png')}
           />
-          <Text style={{...styles.submittedTitleText}}>
+          <Text style={{...sy.md2SbTTxt, marginTop: 20}}>
             Submitted Successfully
           </Text>
-          <Text style={{...styles.submittedDescriptionText}}>
+          <Text style={{...sy.rgMdStTxt, textAlign: 'center'}}>
             Your request has been successfully submitted.{' '}
           </Text>
         </View>
       ) : (
-        <View style={{...styles.bodyWrapper}}>
+        <View style={{padding: 20}}>
           <CustomTextInput
             title={'First name'}
             placeholder={'Enter your first name'}
@@ -106,16 +97,13 @@ const RequestBloodScreen = () => {
             value={reqDateValue}
             setValue={setReqDateValue}
           />
-          {/* LOGIN BUTTON */}
-          <TouchableOpacity
-            activeOpacity={0.9}
+          {/* SUBMIT BUTTON */}
+          <BgBtn
+            title="Submit"
             onPress={() => {
               setIsSubmitted(true);
-            }}>
-            <View style={{...styles.button}}>
-              <Text style={{...styles.buttonText}}>Submit</Text>
-            </View>
-          </TouchableOpacity>
+            }}
+          />
         </View>
       )}
     </ScrollView>

@@ -30,7 +30,7 @@ const RootNavigation = () => {
 
   return (
     <NavigationContainer>
-      {isUserLoggedIn ? (
+      {true ? (
         <TabsNavigator />
       ) : (
         <Stack.Navigator

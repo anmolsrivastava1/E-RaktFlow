@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-import styling from '../../styles/Login_Signup/Login_Style';
+import {View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
@@ -66,7 +59,7 @@ const LoginScreen = () => {
           <Text style={{...sy.smRgHyperLinkTxt}}>Forgot password?</Text>
         </TouchableOpacity>
         {/* LOGIN BUTTON */}
-        <BgBtn title="Log In" />
+        <BgBtn title="Log In" onPress={() => {}} />
         {/* HYPERLINK: FOOTER  */}
         <View style={{...sy.footerView}}>
           <Text style={{...sy.smRgTTxt}}>Don't have an account? </Text>
@@ -78,7 +71,5 @@ const LoginScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create(styling);
 
 export default LoginScreen;

@@ -33,6 +33,11 @@ module.exports = {
     fontSize: 14,
     fontFamily: 'Poppins-Medium',
   },
+  smRgStTxt: {
+    color: '#8992AB',
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
+  },
   smRgTTxt: {
     color: '#1B2D48',
     fontSize: 14,
@@ -58,10 +63,25 @@ module.exports = {
     fontSize: 16,
     fontFamily: 'Poppins-Medium',
   },
+  rgMdSTxt: {
+    color: '#2F327D',
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+  },
+  rgSbTTxt: {
+    color: '#1B2D48',
+    fontSize: 16,
+    fontFamily: 'Poppins-SemiBold',
+  },
   mdMdWTxt: {
     color: '#FFFFFF',
     fontSize: 18,
     fontFamily: 'Poppins-Medium',
+  },
+  md2SbTTxt: {
+    color: '#1B2D48',
+    fontSize: 20,
+    fontFamily: 'Poppins-SemiBold',
   },
   bgSbTTxt: {
     color: '#1B2D48',
@@ -74,6 +94,10 @@ module.exports = {
     flex: 1,
     backgroundColor: 'white',
   },
+  hmScreen: {
+    flex: 1,
+    padding: 15,
+  },
   rgScreenView: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -84,12 +108,42 @@ module.exports = {
   /* --------------- FLEX-VIEWS --------------- */
   footerView: {
     display: 'flex',
-    justifyContent: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   flexRow: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  flexRowAlignJustify: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flexRowAlignSB: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  rowAlignJustify: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  alignJustify: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rowSpaceEvenly: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  rowSpaceEvenlyMgb20: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginBottom: 20,
   },
 };
