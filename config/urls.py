@@ -16,6 +16,7 @@ urlpatterns = [
     # User management
     path("users/", include("e_raktflow.users.urls", namespace="users")),
     path("blood/", include("e_raktflow.blood.urls", namespace="blood")),
+    path("domain/", include("e_raktflow.domains.urls", namespace="domain")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

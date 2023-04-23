@@ -1,6 +1,13 @@
 from random import randint
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField, BooleanField
+from django.db.models import (
+    CharField,
+    BooleanField,
+    ForeignKey,
+    PROTECT,
+    UniqueConstraint,
+    OneToOneField,
+)
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from e_raktflow.core.behaviours import StatusMixin, UUIDMixin
@@ -22,6 +29,12 @@ class User(AbstractUser, UUIDMixin, StatusMixin):
     # last_name = None  # type: ignore
     is_verified = BooleanField(default=False)
     mfa_hash = CharField(max_length=50, null=True, blank=True)
+    user_type = ForeignKey(
+        "domains.DomainType",
+        null=True,
+        blank=True,
+        on_delete=PROTECT,
+    )
 
     # def get_absolute_url(self):
     #     """Get url for user's detail view.

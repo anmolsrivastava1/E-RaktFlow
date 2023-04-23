@@ -77,6 +77,7 @@ LOCAL_APPS = [
     "e_raktflow.users",
     "e_raktflow.core",
     "e_raktflow.blood",
+    "e_raktflow.domains",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
