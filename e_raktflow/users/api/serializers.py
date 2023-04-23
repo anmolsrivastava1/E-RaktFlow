@@ -1,6 +1,7 @@
 import pyotp
 from rest_framework import serializers
 from e_raktflow.core.exceptions import APIExceptionBadRequest
+from e_raktflow.domains.models import DomainType
 from e_raktflow.users.email import send_email
 from e_raktflow.users.models import User
 
@@ -19,6 +20,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = super().create(validated_data)
 
+        user.user_type = DomainType.objects.get(slug="user")
         user.set_password(validated_data["password"])
         user.is_active = True
         user.is_verified = False
