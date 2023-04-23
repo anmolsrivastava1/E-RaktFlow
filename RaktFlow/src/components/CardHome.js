@@ -8,7 +8,7 @@ const CardHome = props => {
   return (
     <TouchableOpacity activeOpacity={0.9} onPress={onPress}>
       <View style={{...styles.cardWrapper}}>
-        <Image style={{}} source={reqImgPath} />
+        <Image style={{marginBottom: 5}} source={reqImgPath} />
         <Text style={{...styles.cardText}}>{title}</Text>
       </View>
     </TouchableOpacity>
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   cardText: {
     ...sy.rgMdSTxt,
     textAlign: 'center',
-    marginTop: 10,
     paddingHorizontal: 30,
   },
 });

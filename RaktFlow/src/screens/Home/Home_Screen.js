@@ -53,7 +53,7 @@ const HomeScreen = () => {
             />
             <CardHome
               title="Request Blood"
-              reqImgPath={require('../../../assets/images/blood1_logo.png')}
+              reqImgPath={require('../../../assets/images/blood_logo.png')}
               onPress={() => {
                 navigation.navigate('RequestBlood');
               }}
@@ -62,27 +62,44 @@ const HomeScreen = () => {
           {/* LINE TWO */}
           <View style={{...sy.rowSpaceEvenlyMgb20}}>
             <CardHome
-              title="Book Ambulance"
-              reqImgPath={require('../../../assets/images/ambulance_logo.png')}
+              title="Oxygen Availability"
+              reqImgPath={require('../../../assets/images/patient2_logo.png')}
               onPress={() => {
-                // navigation.navigate('BookAmbulance');
+                // navigation.navigate('OxygenAvailability');
               }}
             />
             <CardHome
-              title="Hospital Details"
-              reqImgPath={require('../../../assets/images/hospital_logo.png')}
+              title="Blood Availability"
+              reqImgPath={require('../../../assets/images/blood2_logo.png')}
               onPress={() => {
-                // navigation.navigate('Hospital Details');
+                // navigation.navigate('BloodAvailability');
               }}
             />
           </View>
           {/* LINE THREE */}
           <View style={{...sy.rowSpaceEvenlyMgb20}}>
             <CardHome
-              title="Oxygen Availability"
-              reqImgPath={require('../../../assets/images/oxygen1_logo.png')}
+              title="Request Oxygen"
+              reqImgPath={require('../../../assets/images/oxygen_logo.png')}
               onPress={() => {
-                // navigation.navigate('OxygenAvailability');
+                // navigation.navigate('RequestOxygen');
+              }}
+            />
+            <CardHome
+              title="Book Ambulance"
+              reqImgPath={require('../../../assets/images/ambulance_logo.png')}
+              onPress={() => {
+                // navigation.navigate('BookAmbulance');
+              }}
+            />
+          </View>
+          {/* LINE FOUR */}
+          <View style={{...sy.rowSpaceEvenlyMgb20}}>
+            <CardHome
+              title="Nearby Hospitals"
+              reqImgPath={require('../../../assets/images/hospital_logo.png')}
+              onPress={() => {
+                // navigation.navigate('NearbyHospitals');
               }}
             />
             <CardHome
