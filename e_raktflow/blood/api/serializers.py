@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from e_raktflow.blood.models import BloodRequest, Patient
+from e_raktflow.blood.models import BloodRequest, OxygenRequest, Patient
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -19,3 +19,9 @@ class BloodRequestSerializer(serializers.ModelSerializer):
         data["patient"] = PatientSerializer(instance.patient).data
 
         return data
+
+class OxygenRequestSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = OxygenRequest
+        fields = "__all__"

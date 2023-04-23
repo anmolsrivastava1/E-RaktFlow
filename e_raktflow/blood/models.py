@@ -36,11 +36,14 @@ class BloodRequest(UUIDMixin, StatusMixin):
         )
 
 
-# class OxygenRequest(UUIDMixin, StatusMixin):
-#     oxygen_location = models.CharField(max_length=10)
-#     oxygen_date = models.DateField()
-#     oxygen_status = models.CharField(max_length=10)
-#     oxygen_requester = models.CharField(max_length=10)
+class OxygenRequest(UUIDMixin, StatusMixin):
+    oxygen_location = models.CharField(max_length=255,null=True, blank=True)
+    quantity = models.IntegerField(null=True, blank=True)
+    requirement_date = models.DateField(null=True, blank=True)
+    oxygen_status = models.CharField(
+        max_length=10, default="PENDING", null=True, blank=True
+    )
+    oxygen_requester = models.ForeignKey(User, on_delete=models.PROTECT)
 
-#     def __str__(self):
-#         return self.oxygen_location
+    def __str__(self):
+        return self.oxygen_location
