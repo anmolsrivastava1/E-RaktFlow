@@ -32,11 +32,6 @@ module.exports = {
     shadowRadius: 5.62,
     elevation: 8,
   },
-  subHeaderText: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 14,
-    color: '#8992AB',
-  },
   titleText: {
     marginBottom: 10,
     marginLeft: 20,

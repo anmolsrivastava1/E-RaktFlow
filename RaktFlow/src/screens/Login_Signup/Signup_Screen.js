@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
 import {useSelector, useDispatch} from 'react-redux';
 
-import {axiosPostRequest} from '../../api/axios_requests';
+import {axiosSignupPostRequest} from '../../api/axios_requests';
 import {
   setUuid,
   setFirstName,
@@ -24,7 +24,6 @@ const SignupScreen = () => {
   const [lastNameValue, setLastNameValue] = React.useState(null);
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
-  const [uuidValue, setUuidValue] = React.useState(null);
 
   const navigation = useNavigation();
 
@@ -32,10 +31,9 @@ const SignupScreen = () => {
     // navigate to the ConfirmEmail_Screen
     navigation.navigate('ConfirmEmail');
     // make an axios post request for OTP
-    await axiosPostRequest(data)
+    await axiosSignupPostRequest(data)
       .then(res => {
         console.log(res.data.uuid);
-        setUuidValue(res.data.uuid);
         dispatch(setUuid(res.data.uuid));
         dispatch(setFirstName(firstNameValue));
         dispatch(setLastName(lastNameValue));
@@ -56,7 +54,7 @@ const SignupScreen = () => {
   };
 
   const handleLoginPressed = () => {
-    console.log("'log in' pressed: navigating to LogIn Screen");
+    // console.log("'log in' pressed: navigating to LogIn Screen");
     navigation.navigate('LogIn');
   };
 

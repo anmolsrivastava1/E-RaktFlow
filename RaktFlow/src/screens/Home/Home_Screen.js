@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, Image} from 'react-native';
 import styling from '../../styles/Home/Home_Style';
 import sy from '../../styles/styling';
 

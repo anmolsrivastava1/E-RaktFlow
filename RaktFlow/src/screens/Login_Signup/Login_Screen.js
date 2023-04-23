@@ -3,13 +3,27 @@ import {View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
+// REDUX
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  setAccessToken,
+  setRefreshToken,
+  setUuid,
+  toggleUserLoggedIn,
+} from '../../redux/reducer';
+// AXIOS
+import {axiosLoginPostRequest} from '../../api/axios_requests';
 
 import IconTextInput from '../../components/IconTextInput';
 import BgBtn from '../../components/BgBtn';
 
 const LoginScreen = () => {
+  // dispatcher
+  const dispatch = useDispatch();
+  // states
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
+  const [isLoggingIn, setIsLoggingIn] = React.useState(false);
 
   const navigation = useNavigation();
 
@@ -24,6 +38,35 @@ const LoginScreen = () => {
       "'forgot password' pressed: navigating to Reset Password screen",
     );
     navigation.navigate('ResetPassword');
+  };
+
+  const handleLogInPressed = async () => {
+    setIsLoggingIn(true);
+    console.log(emailValue, passwordValue);
+
+    if (emailValue !== null && passwordValue !== null) {
+      try {
+        const login_response = await axiosLoginPostRequest({
+          emailValue,
+          passwordValue,
+        });
+
+        if (login_response.status === 201) {
+          const data = login_response.data;
+          dispatch(setAccessToken(data.tokens.access));
+          dispatch(setRefreshToken(data.tokens.refresh));
+          dispatch(setUuid(data.uuid));
+          dispatch(toggleUserLoggedIn(true));
+          console.log('User logged in');
+        }
+      } catch (error) {
+        Alert.alert('Error', 'Invalid email or password');
+      }
+    } else {
+      console.log('Email OR password cannot be empty');
+    }
+
+    setIsLoggingIn(false);
   };
 
   return (
@@ -59,7 +102,7 @@ const LoginScreen = () => {
           <Text style={{...sy.smRgHyperLinkTxt}}>Forgot password?</Text>
         </TouchableOpacity>
         {/* LOGIN BUTTON */}
-        <BgBtn title="Log In" onPress={() => {}} />
+        <BgBtn title="Log In" onPress={handleLogInPressed} />
         {/* HYPERLINK: FOOTER  */}
         <View style={{...sy.footerView}}>
           <Text style={{...sy.smRgTTxt}}>Don't have an account? </Text>

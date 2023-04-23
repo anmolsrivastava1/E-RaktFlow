@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 // REDUX - DISPATCHERS AND SELECTORS
 import {useSelector, useDispatch} from 'react-redux';
 
-import {axiosOtpPostRequest} from '../../api/axios_requests';
+import {axiosVerifyOtpPatchRequest} from '../../api/axios_requests';
 import {
   setAccessToken,
   setRefreshToken,
@@ -32,7 +32,7 @@ const ConfirmEmailScreen = () => {
   const handleConfirmPressed = async () => {
     // make an axios post request for OTP
     const data = {otp: otpValue};
-    await axiosOtpPostRequest(data, uuid)
+    await axiosVerifyOtpPatchRequest(data, uuid)
       .then(res => {
         console.log(res.data);
         dispatch(setAccessToken(res.data.token.access));
