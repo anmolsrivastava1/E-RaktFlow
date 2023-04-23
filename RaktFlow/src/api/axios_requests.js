@@ -51,7 +51,25 @@ export const axiosResendOtpGetRequest = async (uuid, email) => {
   try {
     const res = await axios({
       method: 'get',
-      url: `${BASE_URL}users/resend-otp/${uuid}/?email=${email}`,
+      url: `${BASE_URL}/users/resend-otp/${uuid}/?email=${email}`,
+    });
+
+    return Promise.resolve(res);
+  } catch (err) {
+    return Promise.reject(err.response?.data);
+  }
+};
+
+/*------------------------------- BLOOD REQUEST -------------------------------*/
+
+export const axiosRaiseBloodPostRequest = async (data, accessToken) => {
+  // axios.defaults.headers.common['Authorization'] = accessToken;
+  axios.defaults.headers.common = {Authorization: `Bearer ${accessToken}`};
+  try {
+    const res = await axios({
+      method: 'post',
+      url: `${BASE_URL}/blood/raise-request/`,
+      data: data,
     });
 
     return Promise.resolve(res);

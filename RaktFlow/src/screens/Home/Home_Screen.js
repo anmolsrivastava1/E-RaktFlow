@@ -4,14 +4,18 @@ import styling from '../../styles/Home/Home_Style';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// REDUX
 import {useSelector} from 'react-redux';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+// COMPONENTS
 import CardHome from '../../components/CardHome';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  // REDUX - DISPATCHER/SELECTOR
   const {firstName} = useSelector(state => state.globalState);
+
   return (
     <ScrollView style={{...sy.hmScreen}}>
       {/* HEADER  */}

@@ -4,16 +4,20 @@ import styling from '../../styles/Home/RequestBlood_Style';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
+// REDUX
+import {useSelector, useDispatch} from 'react-redux';
+// AXIOS
+import {axiosRaiseBloodPostRequest} from '../../api/axios_requests';
 
 import CustomTextInput from '../../components/CustomTextInput';
 import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
 import BgBtn from '../../components/BgBtn';
 
 const RequestBloodScreen = () => {
-  // Navigation
   const navigation = useNavigation();
-
-  // States
+  // REDUX - DISPATCHER/SELECTOR
+  const {accessToken} = useSelector(state => state.globalState);
+  // STATES
   const [firstNameValue, setFirstNameValue] = React.useState(null);
   const [lastNameValue, setLastNameValue] = React.useState(null);
   const [ageValue, setAgeValue] = React.useState(null);
@@ -23,6 +27,44 @@ const RequestBloodScreen = () => {
   const [locationValue, setLocationValue] = React.useState(null);
   const [reqDateValue, setReqDateValue] = React.useState(null);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  // API
+  const handleSubmitPressed = async () => {
+    setIsLoading(true);
+
+    if (accessToken !== null) {
+      try {
+        const response = await axiosRaiseBloodPostRequest(
+          {
+            first_name: firstNameValue,
+            last_name: lastNameValue,
+            age: ageValue,
+            mobile: mobileValue,
+            blood_group: bloodGroupValue,
+            unit: unitValue,
+            location: locationValue,
+            requirement_date: reqDateValue,
+          },
+          accessToken,
+        );
+        console.log(response);
+        if (response.status === 200 || response.status === 201) {
+          // const data = response.data;
+          setIsSubmitted(true);
+          // console.log(data);
+        }
+      } catch (error) {
+        console.log(`Couldn't raise blood request!!`);
+        // console.log(error);
+        console.log(accessToken);
+      }
+    } else {
+      console.log(`Couldn't find access token!!`);
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <ScrollView style={{flex: 1}}>
@@ -98,12 +140,7 @@ const RequestBloodScreen = () => {
             setValue={setReqDateValue}
           />
           {/* SUBMIT BUTTON */}
-          <BgBtn
-            title="Submit"
-            onPress={() => {
-              setIsSubmitted(true);
-            }}
-          />
+          <BgBtn title="Submit" onPress={handleSubmitPressed} />
         </View>
       )}
     </ScrollView>

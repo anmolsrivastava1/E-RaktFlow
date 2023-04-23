@@ -18,9 +18,9 @@ import IconTextInput from '../../components/IconTextInput';
 import BgBtn from '../../components/BgBtn';
 
 const LoginScreen = () => {
-  // dispatcher
+  // REDUX - DISPATCHER/SELECTOR
   const dispatch = useDispatch();
-  // states
+  // STATES
   const [emailValue, setEmailValue] = React.useState(null);
   const [passwordValue, setPasswordValue] = React.useState(null);
   const [isLoggingIn, setIsLoggingIn] = React.useState(false);
