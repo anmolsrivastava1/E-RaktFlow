@@ -48,7 +48,7 @@ const HomeScreen = () => {
               title="Donate Blood"
               reqImgPath={require('../../../assets/images/patient_logo.png')}
               onPress={() => {
-                // navigation.navigate('DonateBlood');
+                navigation.navigate('DonateBlood');
               }}
             />
             <CardHome

@@ -73,6 +73,11 @@ module.exports = {
     fontSize: 16,
     fontFamily: 'Poppins-SemiBold',
   },
+  rgRgWTxt: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontFamily: 'Poppins-Regular',
+  },
   mdMdWTxt: {
     color: '#FFFFFF',
     fontSize: 18,
@@ -136,6 +141,10 @@ module.exports = {
   alignJustify: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  alignSpaceBetween: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   rowSpaceEvenly: {
     flexDirection: 'row',

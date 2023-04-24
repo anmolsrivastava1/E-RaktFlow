@@ -77,3 +77,17 @@ export const axiosRaiseBloodPostRequest = async (data, accessToken) => {
     return Promise.reject(err.response?.data);
   }
 };
+
+export const axiosDonateBloodListGetRequest = async accessToken => {
+  axios.defaults.headers.common = {Authorization: `Bearer ${accessToken}`};
+  try {
+    const res = await axios({
+      method: 'get',
+      url: `${BASE_URL}/blood/list-requests`,
+    });
+
+    return Promise.resolve(res);
+  } catch (err) {
+    return Promise.reject(err.response?.data);
+  }
+};
