@@ -10,6 +10,7 @@ import {} from '../../redux/reducer';
 import HomeScreen from '../../screens/Home/Home_Screen';
 import RequestBloodScreen from '../../screens/Home/RequestBlood_Screen';
 import DonateBloodScreen from '../../screens/Home/DonateBlood_Screen';
+import PatientDonateDetailsScreen from '../../screens/Home/PateintDonateDetails_Screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,10 @@ const HomeTabStackNavigator = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="RequestBlood" component={RequestBloodScreen} />
       <Stack.Screen name="DonateBlood" component={DonateBloodScreen} />
+      <Stack.Screen
+        name="PatientDonateDetails"
+        component={PatientDonateDetailsScreen}
+      />
     </Stack.Navigator>
   );
 };

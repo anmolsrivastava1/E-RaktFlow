@@ -13,8 +13,8 @@ import {
   setLastName,
   setEmail,
 } from '../../redux/reducer';
-import IconTextInput from '../../components/IconTextInput';
-import BgBtn from '../../components/BgBtn';
+import IconTextInput from '../../components/TextInputs/IconTextInput';
+import BgBtn from '../../components/Buttons/BgBtn';
 
 const SignupScreen = () => {
   // DISPATCHER

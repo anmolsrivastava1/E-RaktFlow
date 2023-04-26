@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-import sy from '../styles/styling';
+import sy from '../../styles/styling';
 
 const BgBtn = props => {
   const {title, onPress} = props;

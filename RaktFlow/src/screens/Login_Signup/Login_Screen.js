@@ -14,8 +14,9 @@ import {
 // AXIOS
 import {axiosLoginPostRequest} from '../../api/axios_requests';
 
-import IconTextInput from '../../components/IconTextInput';
-import BgBtn from '../../components/BgBtn';
+import IconTextInput from '../../components/TextInputs/IconTextInput';
+import BgBtn from '../../components/Buttons/BgBtn';
+import ActivityIndicatorBgBtn from '../../components/ActivityIndicators/ActivityIndicatorBgBtn';
 
 const LoginScreen = () => {
   // REDUX - DISPATCHER/SELECTOR
@@ -102,7 +103,12 @@ const LoginScreen = () => {
           <Text style={{...sy.smRgHyperLinkTxt}}>Forgot password?</Text>
         </TouchableOpacity>
         {/* LOGIN BUTTON */}
-        <BgBtn title="Log In" onPress={handleLogInPressed} />
+        {isLoggingIn ? (
+          <ActivityIndicatorBgBtn />
+        ) : (
+          <BgBtn title="Log In" onPress={handleLogInPressed} />
+        )}
+
         {/* HYPERLINK: FOOTER  */}
         <View style={{...sy.footerView}}>
           <Text style={{...sy.smRgTTxt}}>Don't have an account? </Text>

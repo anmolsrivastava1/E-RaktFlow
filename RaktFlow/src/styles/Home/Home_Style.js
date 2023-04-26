@@ -1,14 +1,6 @@
 import sy from '../styling';
 
 module.exports = {
-  avatarWrapper: {
-    ...sy.alignJustify,
-    height: 50,
-    width: 50,
-    borderColor: '#8992AB',
-    borderRadius: 25,
-    borderWidth: 1,
-  },
   alertWrapper: {
     ...sy.alignJustify,
     height: 40,

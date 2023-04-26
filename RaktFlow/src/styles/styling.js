@@ -22,6 +22,7 @@ module.exports = {
   popEB: 'Poppins-ExtraBold',
   popBlack: 'Poppins-Black',
   /* -------------- FONT-SIZE --------------- */
+  exSmTxt: 12,
   smTxt: 14,
   rgTxt: 16,
   mdTxt: 18,
@@ -32,6 +33,11 @@ module.exports = {
     color: '#066DE6',
     fontSize: 14,
     fontFamily: 'Poppins-Medium',
+  },
+  exSmRgStTxt: {
+    color: '#8992AB',
+    fontSize: 12,
+    fontFamily: 'Poppins-Regular',
   },
   smRgStTxt: {
     color: '#8992AB',
@@ -77,6 +83,11 @@ module.exports = {
     color: '#FFFFFF',
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
+  },
+  mdMdTTxt: {
+    color: '#1B2D48',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
   },
   mdMdWTxt: {
     color: '#FFFFFF',

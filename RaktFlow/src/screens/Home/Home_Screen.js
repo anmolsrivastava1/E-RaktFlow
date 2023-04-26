@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // COMPONENTS
-import CardHome from '../../components/CardHome';
+import CardHome from '../../components/Cards/CardHome';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -21,9 +21,11 @@ const HomeScreen = () => {
       {/* HEADER  */}
       <View style={{...sy.flexRowAlignSB, marginBottom: 15}}>
         <View style={{flexDirection: 'row', flex: 1}}>
-          <View style={{...styles.avatarWrapper}}>
-            <Ionicons name={'person'} color={'#1B2D48'} size={32} />
-          </View>
+          <Image
+            alt="avatar"
+            source={require('../../../assets/images/avatar_logo.png')}
+            style={{height: 50, width: 50}}
+          />
           <View style={{marginLeft: 15}}>
             <Text style={{...sy.smRgStTxt}}>Welcome,</Text>
             <Text style={{...sy.rgSbTTxt}}>{`${firstName} !`}</Text>

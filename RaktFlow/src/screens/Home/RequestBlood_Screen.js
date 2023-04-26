@@ -9,9 +9,10 @@ import {useSelector, useDispatch} from 'react-redux';
 // AXIOS
 import {axiosRaiseBloodPostRequest} from '../../api/axios_requests';
 
-import CustomTextInput from '../../components/CustomTextInput';
+import CustomTextInput from '../../components/TextInputs/CustomTextInput';
 import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
-import BgBtn from '../../components/BgBtn';
+import BgBtn from '../../components/Buttons/BgBtn';
+import ActivityIndicatorBgBtn from '../../components/ActivityIndicators/ActivityIndicatorBgBtn';
 
 const RequestBloodScreen = () => {
   const navigation = useNavigation();
@@ -140,7 +141,11 @@ const RequestBloodScreen = () => {
             setValue={setReqDateValue}
           />
           {/* SUBMIT BUTTON */}
-          <BgBtn title="Submit" onPress={handleSubmitPressed} />
+          {isLoading ? (
+            <ActivityIndicatorBgBtn />
+          ) : (
+            <BgBtn title="Submit" onPress={handleSubmitPressed} />
+          )}
         </View>
       )}
     </ScrollView>

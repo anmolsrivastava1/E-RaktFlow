@@ -4,8 +4,8 @@ import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
 
-import IconTextInput from '../../components/IconTextInput';
-import BgBtn from '../../components/BgBtn';
+import IconTextInput from '../../components/TextInputs/IconTextInput';
+import BgBtn from '../../components/Buttons/BgBtn';
 
 const ResetPasswordScreen = () => {
   const [emailValue, setEmailValue] = React.useState(null);

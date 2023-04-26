@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import sy from '../styles/styling';
+import sy from '../../styles/styling';
 
-import SmBtn from './SmBtn';
+import SmBtn from '../Buttons/SmBtn';
 
 const CardDonateBlood = props => {
-  const {patientName, bloodGroup, location, status, onPress} = props;
+  const {patientName, bloodGroup, location, status, onPressBtn} = props;
   return (
     <View>
       <View style={{...styles.cardWrapper}}>
@@ -33,7 +33,7 @@ const CardDonateBlood = props => {
           <SmBtn
             title={status === 'PENDING' ? 'Donate' : 'Completed'}
             disable={status === 'PENDING' ? false : true}
-            onPress={onPress}
+            onPress={onPressBtn}
           />
         </View>
       </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import styling from '../../styles/Home/DonateBlood_Style';
 import sy from '../../styles/styling';
 
@@ -10,7 +10,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {axiosDonateBloodListGetRequest} from '../../api/axios_requests';
 
 import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
-import CardDonateBlood from '../../components/CardDonateBlood';
+import CardDonateBlood from '../../components/Cards/CardDonateBlood';
+import ActivityIndicatorScreen from '../../components/ActivityIndicators/ActivityIndicatorScreen';
 
 const DonateBloodScreen = () => {
   const navigation = useNavigation();
@@ -18,25 +19,26 @@ const DonateBloodScreen = () => {
   const dispatch = useDispatch();
   const {accessToken} = useSelector(state => state.globalState);
   // STATES
-  const [isLoadingScreen, setIsLoadingScreen] = React.useState(false);
+  const [isLoadingScreen, setIsLoadingScreen] = React.useState(true);
   const [resData, setResData] = React.useState([]);
   // API
   const handleGetDonateBloodList = async () => {
     try {
       const response = await axiosDonateBloodListGetRequest(accessToken);
       //   console.log(response.data);
-      setResData(response.data);
+      const tmpData = response.data;
+      setResData(tmpData.reverse());
+      setIsLoadingScreen(false);
     } catch (error) {
       console.log(`Couldn't get donate blood list!!`);
       console.log(error);
     }
   };
   React.useEffect(() => {
-    console.log('hey! inside the useEffect!');
     handleGetDonateBloodList();
-    for (let item of resData) {
-      console.log(item);
-    }
+    // for (let item of resData) {
+    //   console.log(item);
+    // }
   }, []);
 
   return (
@@ -49,7 +51,9 @@ const DonateBloodScreen = () => {
         />
         <Text style={{...sy.md2SbTTxt}}>Donate Blood</Text>
       </View>
-      {resData.length > 0 ? (
+      {isLoadingScreen ? (
+        <ActivityIndicatorScreen />
+      ) : (
         <FlatList
           data={resData}
           renderItem={({index, item}) => {
@@ -60,14 +64,15 @@ const DonateBloodScreen = () => {
                 bloodGroup={item.blood_group}
                 location={item.location}
                 status={item.status}
+                onPressBtn={() => {
+                  navigation.navigate('PatientDonateDetails');
+                }}
               />
             );
           }}
           keyExtractor={item => item.id}
           contentContainerStyle={{paddingBottom: 80}} // bottom spacing, end of list
         />
-      ) : (
-        <></>
       )}
     </View>
   );
