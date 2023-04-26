@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, ScrollView, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import styling from '../../styles/Home/Home_Style';
 import sy from '../../styles/styling';
 
@@ -21,24 +28,35 @@ const HomeScreen = () => {
       {/* HEADER  */}
       <View style={{...sy.flexRowAlignSB, marginBottom: 15}}>
         <View style={{flexDirection: 'row', flex: 1}}>
-          <Image
-            alt="avatar"
-            source={require('../../../assets/images/avatar_logo.png')}
-            style={{height: 50, width: 50}}
-          />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              navigation.navigate('ProfileStack');
+            }}>
+            <Image
+              alt="avatar"
+              source={require('../../../assets/images/avatar_logo.png')}
+              style={{height: 50, width: 50}}
+            />
+          </TouchableOpacity>
           <View style={{marginLeft: 15}}>
             <Text style={{...sy.smRgStTxt}}>Welcome,</Text>
             <Text style={{...sy.rgSbTTxt}}>{`${firstName} !`}</Text>
           </View>
         </View>
         {/* NOTIFICATION BELL  */}
-        <View style={{...styles.alertWrapper}}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={{...styles.alertWrapper}}
+          onPress={() => {
+            navigation.navigate('Notifications');
+          }}>
           <Ionicons
             name={'notifications-outline'}
             color={'#1B2D48'}
             size={26}
           />
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={{paddingBottom: 30}}>
         {/* CATEGORIES  */}

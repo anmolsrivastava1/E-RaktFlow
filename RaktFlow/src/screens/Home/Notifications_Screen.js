@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
 
-const EventsScreen = () => {
+const NotificationsScreen = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={{flex: 1}}>
@@ -17,11 +17,11 @@ const EventsScreen = () => {
             navigation.navigate('Home');
           }}
         />
-        <Text style={{...sy.md2SbTTxt}}>Events</Text>
+        <Text style={{...sy.md2SbTTxt}}>Notifications</Text>
       </View>
       <View style={{...styles.bodyWrapper}}>
         <Text style={{...sy.mdMdTTxt, alignSelf: 'center'}}>
-          No events found!
+          No notifications!
         </Text>
       </View>
     </ScrollView>
@@ -30,4 +30,4 @@ const EventsScreen = () => {
 
 const styles = StyleSheet.create(styling);
 
-export default EventsScreen;
+export default NotificationsScreen;

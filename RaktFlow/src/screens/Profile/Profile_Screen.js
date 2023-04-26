@@ -1,31 +1,33 @@
 import React from 'react';
-import {View, ScrollView, Text, Button, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, StyleSheet} from 'react-native';
+import styling from '../../styles/Events/Events_Style';
+import sy from '../../styles/styling';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+
+import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
   return (
-    <ScrollView style={{...styles.screen}}>
-      <View style={{...styles.view}}>
-        <Ionicons name={'person'} color={'#066DE6'} size={46} />
-        <Text style={{...styles.fontStyle}}>Profile Screen</Text>
+    <ScrollView style={{flex: 1}}>
+      <View style={{...styles.headerWrapper}}>
+        <BackHeaderArrowBtn
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+        />
+        <Text style={{...sy.md2SbTTxt}}>Profile</Text>
+      </View>
+      <View style={{...styles.bodyWrapper}}>
+        <Text style={{...sy.mdMdTTxt, alignSelf: 'center'}}>
+          Under development!
+        </Text>
       </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  fontStyle: {
-    fontSize: 40,
-  },
-  view: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
+const styles = StyleSheet.create(styling);
 
 export default ProfileScreen;

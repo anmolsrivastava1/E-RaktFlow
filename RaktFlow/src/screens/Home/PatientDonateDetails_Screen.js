@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet, Image} from 'react-native';
 import styling from '../../styles/Home/PateintDonateDetails_Style.js';
-import sy from '../../styles/styling';
+import sy from '../../styles/styling.js';
 
 import {useNavigation} from '@react-navigation/native';
 // REDUX
 import {useSelector, useDispatch} from 'react-redux';
 // AXIOS
-import {} from '../../api/axios_requests';
+import {} from '../../api/axios_requests.js';
 
-import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
+import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn.js';
 import MdBtn from '../../components/Buttons/MdBtn.js';
 import MdNegBtn from '../../components/Buttons/MdNegBtn.js';
 import ActivityIndicatorScreen from '../../components/ActivityIndicators/ActivityIndicatorScreen.js';
