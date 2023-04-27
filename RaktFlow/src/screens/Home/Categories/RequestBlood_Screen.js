@@ -1,18 +1,18 @@
 import React from 'react';
 import {View, ScrollView, Text, StyleSheet, Image} from 'react-native';
-import styling from '../../styles/Home/RequestBlood_Style';
-import sy from '../../styles/styling';
+import styling from '../../../styles/Home/RequestBlood_Style';
+import sy from '../../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
 // REDUX
 import {useSelector, useDispatch} from 'react-redux';
 // AXIOS
-import {axiosRaiseBloodPostRequest} from '../../api/axios_requests';
+import {axiosRaiseBloodPostRequest} from '../../../api/axios_requests';
 
-import CustomTextInput from '../../components/TextInputs/CustomTextInput';
-import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
-import BgBtn from '../../components/Buttons/BgBtn';
-import ActivityIndicatorBgBtn from '../../components/ActivityIndicators/ActivityIndicatorBgBtn';
+import CustomTextInput from '../../../components/TextInputs/CustomTextInput';
+import BackHeaderArrowBtn from '../../../components/BackHeaderArrowBtn';
+import BgBtn from '../../../components/Buttons/BgBtn';
+import ActivityIndicatorBgBtn from '../../../components/ActivityIndicators/ActivityIndicatorBgBtn';
 
 const RequestBloodScreen = () => {
   const navigation = useNavigation();
@@ -81,7 +81,7 @@ const RequestBloodScreen = () => {
         <View style={{...styles.sumittedBodyWrapper}}>
           <Image
             style={{...styles.logo}}
-            source={require('../../../assets/images/check1_logo.png')}
+            source={require('../../../../assets/images/check1_logo.png')}
           />
           <Text style={{...sy.md2SbTTxt, marginTop: 20}}>
             Submitted Successfully

@@ -85,14 +85,14 @@ const HomeScreen = () => {
               title="Oxygen Availability"
               reqImgPath={require('../../../assets/images/patient2_logo.png')}
               onPress={() => {
-                // navigation.navigate('OxygenAvailability');
+                navigation.navigate('OxygenAvailability');
               }}
             />
             <CardHome
               title="Blood Availability"
               reqImgPath={require('../../../assets/images/blood2_logo.png')}
               onPress={() => {
-                // navigation.navigate('BloodAvailability');
+                navigation.navigate('BloodAvailability');
               }}
             />
           </View>
@@ -102,14 +102,14 @@ const HomeScreen = () => {
               title="Request Oxygen"
               reqImgPath={require('../../../assets/images/oxygen_logo.png')}
               onPress={() => {
-                // navigation.navigate('RequestOxygen');
+                navigation.navigate('RequestOxygen');
               }}
             />
             <CardHome
               title="Book Ambulance"
               reqImgPath={require('../../../assets/images/ambulance_logo.png')}
               onPress={() => {
-                // navigation.navigate('BookAmbulance');
+                navigation.navigate('BookAmbulance');
               }}
             />
           </View>
@@ -119,21 +119,26 @@ const HomeScreen = () => {
               title="Nearby Hospitals"
               reqImgPath={require('../../../assets/images/hospital_logo.png')}
               onPress={() => {
-                // navigation.navigate('NearbyHospitals');
+                navigation.navigate('NearbyHospitals');
               }}
             />
             <CardHome
               title="Get Information"
               reqImgPath={require('../../../assets/images/mail1_logo.png')}
               onPress={() => {
-                // navigation.navigate('GetInformation');
+                navigation.navigate('GetInformation');
               }}
             />
           </View>
         </View>
         {/* FOOTER: TODAY'S OFFER | DIET PLAN  */}
         <Text style={{...sy.bgSbTTxt, ...styles.titleText}}>Today's Offer</Text>
-        <View style={{...styles.dietPlanWrapper}}>
+        <TouchableOpacity
+          style={{...styles.dietPlanWrapper}}
+          activeOpacity={0.9}
+          onPress={() => {
+            navigation.navigate('GetDietPlan');
+          }}>
           <View>
             <Text style={{...styles.dietTitleText}}>
               Get your <Text style={{color: '#A00000'}}>diet</Text>
@@ -146,7 +151,7 @@ const HomeScreen = () => {
             style={{...styles.dietImg}}
             source={require('../../../assets/images/diet_plan_img.png')}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

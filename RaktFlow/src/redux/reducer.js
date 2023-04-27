@@ -7,7 +7,7 @@ export const stateSlice = createSlice({
     uuid: null,
     accessToken: null,
     refreshToken: null,
-    firstName: null,
+    firstName: 'Anmol',
     lastName: null,
     email: null,
   },

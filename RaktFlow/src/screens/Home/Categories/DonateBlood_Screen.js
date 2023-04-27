@@ -1,17 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
-import styling from '../../styles/Home/DonateBlood_Style';
-import sy from '../../styles/styling';
+import styling from '../../../styles/Home/DonateBlood_Style';
+import sy from '../../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
 // REDUX
 import {useSelector, useDispatch} from 'react-redux';
 // AXIOS
-import {axiosDonateBloodListGetRequest} from '../../api/axios_requests';
+import {axiosDonateBloodListGetRequest} from '../../../api/axios_requests';
 
-import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
-import CardDonateBlood from '../../components/Cards/CardDonateBlood';
-import ActivityIndicatorScreen from '../../components/ActivityIndicators/ActivityIndicatorScreen';
+import BackHeaderArrowBtn from '../../../components/BackHeaderArrowBtn';
+import CardDonateBlood from '../../../components/Cards/CardDonateBlood';
+import ActivityIndicatorScreen from '../../../components/ActivityIndicators/ActivityIndicatorScreen';
 
 const DonateBloodScreen = () => {
   const navigation = useNavigation();
