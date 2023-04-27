@@ -1,5 +1,10 @@
 from rest_framework import viewsets
-from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin
+from rest_framework.mixins import (
+    ListModelMixin,
+    CreateModelMixin,
+    UpdateModelMixin,
+    RetrieveModelMixin,
+)
 from rest_framework.viewsets import GenericViewSet
 from e_raktflow.blood.api.serializers import (
     BloodRequestSerializer,
@@ -11,10 +16,14 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 
-class RaiseBloodRequest(GenericViewSet, CreateModelMixin, ListModelMixin):
+class RaiseBloodRequest(
+    GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin
+):
     queryset = BloodRequest.objects.all()
     serializer_class = BloodRequestSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = "uuid"
+    lookup_url_kwarg = "uuid"
 
     def get_queryset(self):
         return self.queryset.filter(blood_requester_raiser=self.request.user)

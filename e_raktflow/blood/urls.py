@@ -17,6 +17,11 @@ urlpatterns = [
         name="list_requests",
     ),
     path(
+        "get-blood-request/<slug:uuid>/",
+        view=RaiseBloodRequest.as_view({"get": "retrieve"}),
+        name="retrieve_blood_requests",
+    ),
+    path(
         "raise-request/oxygen/",
         view=RaiseOxygenRequest.as_view({"post": "create"}),
         name="raise_request_oxygen",
