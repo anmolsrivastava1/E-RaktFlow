@@ -67,6 +67,8 @@ class UserLoginSerializer(serializers.Serializer):
     message = serializers.SerializerMethodField(read_only=True)
     tokens = serializers.SerializerMethodField(read_only=True)
     uuid = serializers.SerializerMethodField(read_only=True)
+    first_name = serializers.SerializerMethodField(read_only=True)
+    last_name = serializers.SerializerMethodField(read_only=True)
 
     def get_message(self, obj):
         return self.context["message"]
@@ -76,6 +78,12 @@ class UserLoginSerializer(serializers.Serializer):
 
     def get_uuid(self, obj):
         return self.context["user"].uuid
+
+    def get_first_name(self, obj):
+        return self.context["user"].first_name
+
+    def get_last_name(self, obj):
+        return self.context["user"].last_name
 
     def create(self, validated_data):
         email = validated_data.get("email", None)
