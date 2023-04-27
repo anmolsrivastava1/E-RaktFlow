@@ -1,5 +1,8 @@
 package com.raktflow;
 
+import android.os.Bundle; // here - splash screen
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreen; // here - splash screen
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
@@ -12,6 +15,11 @@ public class MainActivity extends ReactActivity {
    * rendering of the component.
    */
   @Override
+  // here - splash screen
+  protected void onCreate(Bundle savedInstanceState) {
+    SplashScreen.show(this);  // here
+    super.onCreate(savedInstanceState);
+  }
   protected String getMainComponentName() {
     return "RaktFlow";
   }

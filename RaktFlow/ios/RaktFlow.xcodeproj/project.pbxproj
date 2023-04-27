@@ -32,6 +32,18 @@
 		256E6AB510E8404395C1EAA2 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA76682B5FC44BC094F253B0 /* Poppins-SemiBoldItalic.ttf */; };
 		B8AC781F3E3D47C381D28023 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4DF8939D87749AFB5DD047C /* Poppins-Thin.ttf */; };
 		4CFAF1EB4DFE487E8CC693B1 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C9BE53F90F14B898E2AE4B0 /* Poppins-ThinItalic.ttf */; };
+		3A65DB3CBAC0444E8BDE173A /* ambulance_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6396DED241E84E9BB788F3E7 /* ambulance_logo.png */; };
+		310488266604487389E2F046 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A9FFCA80BA4DB4A3A7CA26 /* app_icon.png */; };
+		104CC63090F84453A6CF7EFC /* avatar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 498DD04FAA424DF1B62B7E2C /* avatar_logo.png */; };
+		5AD510CF265D45A0AA254A2A /* blood2_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 93B6E1B5761C42618201304A /* blood2_logo.png */; };
+		A463232E36554D13B046EEE6 /* blood_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D2554520EA244041947FC8E3 /* blood_logo.png */; };
+		3D5F6DB9D67D40B6834E8870 /* check1_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6151BE37841B401DA814481F /* check1_logo.png */; };
+		9763F639BA954366A871FA0C /* diet_plan_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 1753B62472DD47D5BDB424E1 /* diet_plan_img.png */; };
+		9A02B61E80AA4B7BAB5DCE71 /* hospital_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EC4767AD74D645C2B1323A3C /* hospital_logo.png */; };
+		2E3A5B6053F040C19486A0EE /* mail1_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 557A41681B9C4CE5957A64A6 /* mail1_logo.png */; };
+		472825671160431A9A4814E2 /* oxygen_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7632D728C46244DDBD89FE1D /* oxygen_logo.png */; };
+		CBCC4D77B6654C3AB1FA4C03 /* patient2_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9571B513754B4B1F8F011270 /* patient2_logo.png */; };
+		AB076AFCEA984629B547745E /* patient_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E0B742DC1F84B3FA1AA1C45 /* patient_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +92,18 @@
 		DA76682B5FC44BC094F253B0 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F4DF8939D87749AFB5DD047C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; name = "Poppins-Thin.ttf"; path = "../assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5C9BE53F90F14B898E2AE4B0 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-ThinItalic.ttf"; path = "../assets/fonts/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6396DED241E84E9BB788F3E7 /* ambulance_logo.png */ = {isa = PBXFileReference; name = "ambulance_logo.png"; path = "../assets/images/ambulance_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		08A9FFCA80BA4DB4A3A7CA26 /* app_icon.png */ = {isa = PBXFileReference; name = "app_icon.png"; path = "../assets/images/app_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		498DD04FAA424DF1B62B7E2C /* avatar_logo.png */ = {isa = PBXFileReference; name = "avatar_logo.png"; path = "../assets/images/avatar_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		93B6E1B5761C42618201304A /* blood2_logo.png */ = {isa = PBXFileReference; name = "blood2_logo.png"; path = "../assets/images/blood2_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D2554520EA244041947FC8E3 /* blood_logo.png */ = {isa = PBXFileReference; name = "blood_logo.png"; path = "../assets/images/blood_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6151BE37841B401DA814481F /* check1_logo.png */ = {isa = PBXFileReference; name = "check1_logo.png"; path = "../assets/images/check1_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1753B62472DD47D5BDB424E1 /* diet_plan_img.png */ = {isa = PBXFileReference; name = "diet_plan_img.png"; path = "../assets/images/diet_plan_img.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EC4767AD74D645C2B1323A3C /* hospital_logo.png */ = {isa = PBXFileReference; name = "hospital_logo.png"; path = "../assets/images/hospital_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		557A41681B9C4CE5957A64A6 /* mail1_logo.png */ = {isa = PBXFileReference; name = "mail1_logo.png"; path = "../assets/images/mail1_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7632D728C46244DDBD89FE1D /* oxygen_logo.png */ = {isa = PBXFileReference; name = "oxygen_logo.png"; path = "../assets/images/oxygen_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9571B513754B4B1F8F011270 /* patient2_logo.png */ = {isa = PBXFileReference; name = "patient2_logo.png"; path = "../assets/images/patient2_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0E0B742DC1F84B3FA1AA1C45 /* patient_logo.png */ = {isa = PBXFileReference; name = "patient_logo.png"; path = "../assets/images/patient_logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +230,18 @@
 				DA76682B5FC44BC094F253B0 /* Poppins-SemiBoldItalic.ttf */,
 				F4DF8939D87749AFB5DD047C /* Poppins-Thin.ttf */,
 				5C9BE53F90F14B898E2AE4B0 /* Poppins-ThinItalic.ttf */,
+				6396DED241E84E9BB788F3E7 /* ambulance_logo.png */,
+				08A9FFCA80BA4DB4A3A7CA26 /* app_icon.png */,
+				498DD04FAA424DF1B62B7E2C /* avatar_logo.png */,
+				93B6E1B5761C42618201304A /* blood2_logo.png */,
+				D2554520EA244041947FC8E3 /* blood_logo.png */,
+				6151BE37841B401DA814481F /* check1_logo.png */,
+				1753B62472DD47D5BDB424E1 /* diet_plan_img.png */,
+				EC4767AD74D645C2B1323A3C /* hospital_logo.png */,
+				557A41681B9C4CE5957A64A6 /* mail1_logo.png */,
+				7632D728C46244DDBD89FE1D /* oxygen_logo.png */,
+				9571B513754B4B1F8F011270 /* patient2_logo.png */,
+				0E0B742DC1F84B3FA1AA1C45 /* patient_logo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -325,6 +361,18 @@
 				256E6AB510E8404395C1EAA2 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				B8AC781F3E3D47C381D28023 /* Poppins-Thin.ttf in Resources */,
 				4CFAF1EB4DFE487E8CC693B1 /* Poppins-ThinItalic.ttf in Resources */,
+				3A65DB3CBAC0444E8BDE173A /* ambulance_logo.png in Resources */,
+				310488266604487389E2F046 /* app_icon.png in Resources */,
+				104CC63090F84453A6CF7EFC /* avatar_logo.png in Resources */,
+				5AD510CF265D45A0AA254A2A /* blood2_logo.png in Resources */,
+				A463232E36554D13B046EEE6 /* blood_logo.png in Resources */,
+				3D5F6DB9D67D40B6834E8870 /* check1_logo.png in Resources */,
+				9763F639BA954366A871FA0C /* diet_plan_img.png in Resources */,
+				9A02B61E80AA4B7BAB5DCE71 /* hospital_logo.png in Resources */,
+				2E3A5B6053F040C19486A0EE /* mail1_logo.png in Resources */,
+				472825671160431A9A4814E2 /* oxygen_logo.png in Resources */,
+				CBCC4D77B6654C3AB1FA4C03 /* patient2_logo.png in Resources */,
+				AB076AFCEA984629B547745E /* patient_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
