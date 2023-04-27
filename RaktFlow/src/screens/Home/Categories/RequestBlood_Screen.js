@@ -3,6 +3,7 @@ import {View, ScrollView, Text, StyleSheet, Image} from 'react-native';
 import styling from '../../../styles/Home/RequestBlood_Style';
 import sy from '../../../styles/styling';
 
+import DropDownPicker from 'react-native-dropdown-picker';
 import {useNavigation} from '@react-navigation/native';
 // REDUX
 import {useSelector, useDispatch} from 'react-redux';
@@ -29,6 +30,19 @@ const RequestBloodScreen = () => {
   const [reqDateValue, setReqDateValue] = React.useState(null);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isValidRes, setIsValidRes] = React.useState(true);
+  // blood group - state
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+  const [dropdownItems, setDropdownItems] = React.useState([
+    {label: 'A+', value: 'A+'},
+    {label: 'A-', value: 'A-'},
+    {label: 'B+', value: 'B+-'},
+    {label: 'B-', value: 'B-'},
+    {label: 'AB+', value: 'AB+'},
+    {label: 'AB-', value: 'AB-'},
+    {label: 'O+', value: 'O+'},
+    {label: 'O-', value: 'O-'},
+  ]);
 
   // API
   const handleSubmitPressed = async () => {
@@ -53,14 +67,17 @@ const RequestBloodScreen = () => {
         if (response.status === 200 || response.status === 201) {
           // const data = response.data;
           setIsSubmitted(true);
+          setIsValidRes(true);
           // console.log(data);
         }
       } catch (error) {
+        setIsValidRes(false);
         console.log(`Couldn't raise blood request!!`);
         // console.log(error);
         console.log(accessToken);
       }
     } else {
+      setIsValidRes(false);
       console.log(`Couldn't find access token!!`);
     }
 
@@ -68,7 +85,7 @@ const RequestBloodScreen = () => {
   };
 
   return (
-    <ScrollView style={{flex: 1}}>
+    <ScrollView style={{flex: 1}} nestedScrollEnabled={true}>
       <View style={{...styles.headerWrapper}}>
         <BackHeaderArrowBtn
           onPress={() => {
@@ -98,6 +115,7 @@ const RequestBloodScreen = () => {
             value={firstNameValue}
             setValue={setFirstNameValue}
           />
+
           <CustomTextInput
             title={'Last name'}
             placeholder={'Enter your last name'}
@@ -116,12 +134,32 @@ const RequestBloodScreen = () => {
             value={mobileValue}
             setValue={setMobileValue}
           />
-          <CustomTextInput
-            title={'Blood Group'}
-            placeholder={'Enter your blood group'}
-            value={bloodGroupValue}
-            setValue={setBloodGroupValue}
-          />
+          <Text style={{...sy.smSbTTxt, marginLeft: 5, marginBottom: 5}}>
+            Blood Group
+          </Text>
+          <ScrollView
+            horizontal={true}
+            contentContainerStyle={{
+              width: '100%',
+              height: isDropdownOpen ? 280 : '100%',
+            }}>
+            <DropDownPicker
+              open={isDropdownOpen}
+              value={bloodGroupValue}
+              items={dropdownItems}
+              setOpen={setIsDropdownOpen}
+              setValue={setBloodGroupValue}
+              setItems={setDropdownItems}
+              theme="LIGHT"
+              multiple={false}
+              mode="BADGE"
+              placeholder="Select your blood group"
+              textStyle={{...sy.rgRgTTxt}}
+              style={{borderColor: 'lightgrey', marginBottom: 15}}
+              listMode="SCROLLVIEW"
+              placeholderStyle={{color: '#888'}}
+            />
+          </ScrollView>
           <CustomTextInput
             title={'Unit'}
             placeholder={'Enter unit needed'}
@@ -140,6 +178,12 @@ const RequestBloodScreen = () => {
             value={reqDateValue}
             setValue={setReqDateValue}
           />
+          {isValidRes ? null : (
+            <Text
+              style={{...sy.rgMdTTxt, textAlign: 'center', color: '#F52D56'}}>
+              Check your inputs!
+            </Text>
+          )}
           {/* SUBMIT BUTTON */}
           {isLoading ? (
             <ActivityIndicatorBgBtn />
