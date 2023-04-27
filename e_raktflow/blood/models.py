@@ -44,6 +44,12 @@ class OxygenRequest(UUIDMixin, StatusMixin):
         max_length=10, default="PENDING", null=True, blank=True
     )
     oxygen_requester = models.ForeignKey(User, on_delete=models.PROTECT)
+    patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.oxygen_location
+        return (
+            "BY :"
+            + self.oxygen_requester.first_name
+            + " "
+            + self.oxygen_requester.last_name
+        )

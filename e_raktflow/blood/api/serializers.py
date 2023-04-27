@@ -20,8 +20,14 @@ class BloodRequestSerializer(serializers.ModelSerializer):
 
         return data
 
+
 class OxygenRequestSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = OxygenRequest
         fields = "__all__"
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data["patient"] = PatientSerializer(instance.patient).data
+
+        return data
