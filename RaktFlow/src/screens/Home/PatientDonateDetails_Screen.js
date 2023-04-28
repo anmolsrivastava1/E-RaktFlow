@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Linking,
+  Platform,
+} from 'react-native';
 import styling from '../../styles/Home/PateintDonateDetails_Style.js';
 import sy from '../../styles/styling.js';
 
@@ -43,6 +51,16 @@ const PatientDonateDetailsScreen = () => {
   React.useEffect(() => {
     handleGetPatientDetails();
   }, []);
+
+  const dialPatientContact = mobileNo => {
+    let phoneNumber = '';
+    if (Platform.OS === 'android') {
+      phoneNumber = `tel:${mobileNo}`;
+    } else {
+      phoneNumber = `telprompt:${mobileNo}`;
+    }
+    Linking.openURL(phoneNumber);
+  };
 
   return (
     <ScrollView style={{flex: 1}}>
@@ -108,7 +126,12 @@ const PatientDonateDetailsScreen = () => {
           </View>
           <View style={{...styles.actionWrapper}}>
             <MdNegBtn title="Send details" onPress={() => {}} />
-            <MdBtn title="Call" onPress={() => {}} />
+            <MdBtn
+              title="Call"
+              onPress={() => {
+                dialPatientContact(resData.mobile);
+              }}
+            />
           </View>
         </View>
       )}
