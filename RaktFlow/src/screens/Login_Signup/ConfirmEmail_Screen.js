@@ -19,7 +19,7 @@ const ConfirmEmailScreen = () => {
   // DISPATCHER
   const dispatch = useDispatch();
   // SELECTOR
-  const {uuid} = useSelector(state => state.globalState);
+  const {uuid, isUserLoggedIn} = useSelector(state => state.globalState);
   // STATES
   const [otpValue, setOtpValue] = React.useState(null);
 
@@ -65,12 +65,14 @@ const ConfirmEmailScreen = () => {
         {/* CONFIRM BUTTON */}
         <BgBtn title="Confirm" onPress={handleConfirmPressed} />
         {/* FOOTER  */}
-        <View style={{...sy.footerView}}>
-          <Text style={{...sy.smRgTTxt}}>Already have an account? </Text>
-          <TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
-            <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
-          </TouchableOpacity>
-        </View>
+        {isUserLoggedIn ? null : (
+          <View style={{...sy.footerView}}>
+            <Text style={{...sy.smRgTTxt}}>Already have an account? </Text>
+            <TouchableOpacity activeOpacity={0.9} onPress={handleLogInPressed}>
+              <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

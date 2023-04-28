@@ -7,6 +7,9 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   setAccessToken,
+  setFirstName,
+  setLastName,
+  setEmail,
   setRefreshToken,
   setUuid,
   toggleUserLoggedIn,
@@ -43,7 +46,6 @@ const LoginScreen = () => {
 
   const handleLogInPressed = async () => {
     setIsLoggingIn(true);
-    console.log(emailValue, passwordValue);
 
     if (emailValue !== null && passwordValue !== null) {
       try {
@@ -57,6 +59,9 @@ const LoginScreen = () => {
           dispatch(setAccessToken(data.tokens.access));
           dispatch(setRefreshToken(data.tokens.refresh));
           dispatch(setUuid(data.uuid));
+          dispatch(setFirstName(data.first_name));
+          dispatch(setLastName(data.last_name));
+          dispatch(setEmail(data.email));
           dispatch(toggleUserLoggedIn(true));
           console.log('User logged in');
         }

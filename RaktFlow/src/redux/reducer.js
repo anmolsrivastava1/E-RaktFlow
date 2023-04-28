@@ -7,7 +7,7 @@ export const stateSlice = createSlice({
     uuid: null,
     accessToken: null,
     refreshToken: null,
-    firstName: 'Anmol',
+    firstName: null,
     lastName: null,
     email: null,
   },
@@ -31,7 +31,7 @@ export const stateSlice = createSlice({
       state.lastName = action.payload;
     },
     setEmail: (state, action) => {
-      state.email = action.email;
+      state.email = action.payload;
     },
   },
 });

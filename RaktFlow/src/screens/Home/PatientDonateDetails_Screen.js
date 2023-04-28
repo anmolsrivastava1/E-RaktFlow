@@ -32,6 +32,8 @@ const PatientDonateDetailsScreen = () => {
   // STATES
   const [isLoadingScreen, setIsLoadingScreen] = React.useState(true);
   const [resData, setResData] = React.useState(null);
+  const [isDetailsSentToPatient, setIsDetailsSentToPatient] =
+    React.useState(false);
   // API
   const handleGetPatientDetails = async () => {
     if (uuid !== null) {
@@ -125,7 +127,17 @@ const PatientDonateDetailsScreen = () => {
             </View>
           </View>
           <View style={{...styles.actionWrapper}}>
-            <MdNegBtn title="Send details" onPress={() => {}} />
+            <MdNegBtn
+              title="Send details"
+              onPress={() => {
+                setTimeout(() => {
+                  setIsDetailsSentToPatient(true);
+                }, 1000);
+                setTimeout(() => {
+                  setIsDetailsSentToPatient(false);
+                }, 4000);
+              }}
+            />
             <MdBtn
               title="Call"
               onPress={() => {
@@ -133,6 +145,12 @@ const PatientDonateDetailsScreen = () => {
               }}
             />
           </View>
+          {isDetailsSentToPatient ? (
+            <Text
+              style={{...sy.rgMdTTxt, color: '#20A164', textAlign: 'center'}}>
+              ✅ Details Sent To Patient
+            </Text>
+          ) : null}
         </View>
       )}
     </ScrollView>

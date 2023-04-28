@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeTabStackNavigator from '../homeTabStackNavigation/index';
 import EventsScreen from '../../screens/Events/Events_Screen';
 import ChatScreen from '../../screens/Chat/Chat_Screen';
-import ProfileScreen from '../../screens/Profile/Profile_Screen';
+import ProfileTabStackNavigator from '../profileTabStackNavigation/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -86,7 +86,7 @@ const TabsNavigator = props => {
             return <Ionicons name={iconName} color={color} size={28} />;
           },
         }}
-        children={() => <ProfileScreen />}
+        component={ProfileTabStackNavigator}
       />
     </Tab.Navigator>
   );

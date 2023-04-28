@@ -3,23 +3,37 @@ import {View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
+// REDUX
+import {useSelector, useDispatch} from 'react-redux';
 
 import IconTextInput from '../../components/TextInputs/IconTextInput';
 import BgBtn from '../../components/Buttons/BgBtn';
+import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
 
 const ResetPasswordScreen = () => {
+  const navigation = useNavigation();
+  // REDUX = DISPATCHER/SELECTOR
+  const dispatch = useDispatch();
+  const {isUserLoggedIn} = useSelector(state => state.globalState);
+  // STATES
   const [emailValue, setEmailValue] = React.useState(null);
 
-  const navigation = useNavigation();
-
-  const handleSignUpPressed = () => {
-    console.log("'sign up' pressed: navigating to SignUp screen");
+  const handleLoginPressed = () => {
     // validate user
-    navigation.navigate('LogIn');
+    navigation.navigate('Profile');
   };
 
   return (
     <ScrollView style={{...sy.rgScreen}}>
+      {isUserLoggedIn ? (
+        <View style={{...sy.flexRowAlignJustify, marginBottom: 30}}>
+          <BackHeaderArrowBtn
+            onPress={() => {
+              navigation.navigate('Profile');
+            }}
+          />
+        </View>
+      ) : null}
       <View style={{...sy.rgScreenView}}>
         {/* Title */}
         <View style={{marginBottom: 20}}>
@@ -39,12 +53,14 @@ const ResetPasswordScreen = () => {
         {/* LOGIN BUTTON */}
         <BgBtn title="Send" onPress={() => {}} />
         {/* FOOTER  */}
-        <View style={{...sy.footerView}}>
-          <Text style={{...sy.smRgTTxt}}>Already know the password? </Text>
-          <TouchableOpacity activeOpacity={0.9} onPress={handleSignUpPressed}>
-            <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
-          </TouchableOpacity>
-        </View>
+        {isUserLoggedIn ? null : (
+          <View style={{...sy.footerView}}>
+            <Text style={{...sy.smRgTTxt}}>Already know the password? </Text>
+            <TouchableOpacity activeOpacity={0.9} onPress={handleLoginPressed}>
+              <Text style={{...sy.smRgHyperLinkTxt}}>Log in</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

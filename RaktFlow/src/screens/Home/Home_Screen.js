@@ -21,7 +21,7 @@ import CardHome from '../../components/Cards/CardHome';
 const HomeScreen = () => {
   const navigation = useNavigation();
   // REDUX - DISPATCHER/SELECTOR
-  const {firstName} = useSelector(state => state.globalState);
+  const {firstName, lastName, email} = useSelector(state => state.globalState);
 
   return (
     <ScrollView style={{...sy.hmScreen}}>
@@ -41,7 +41,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
           <View style={{marginLeft: 15}}>
             <Text style={{...sy.smRgStTxt}}>Welcome,</Text>
-            <Text style={{...sy.rgSbTTxt}}>{`${firstName} !`}</Text>
+            <Text style={{...sy.rgSbTTxt}}>{`${firstName} ${lastName} !`}</Text>
           </View>
         </View>
         {/* NOTIFICATION BELL  */}
