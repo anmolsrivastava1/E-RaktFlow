@@ -111,26 +111,25 @@ const RequestBloodScreen = () => {
         <View style={{padding: 20}}>
           <CustomTextInput
             title={'First name'}
-            placeholder={'Enter your first name'}
+            placeholder={'Enter first name'}
             value={firstNameValue}
             setValue={setFirstNameValue}
           />
-
           <CustomTextInput
             title={'Last name'}
-            placeholder={'Enter your last name'}
+            placeholder={'Enter last name'}
             value={lastNameValue}
             setValue={setLastNameValue}
           />
           <CustomTextInput
             title={'Age'}
-            placeholder={'Enter your age'}
+            placeholder={'Enter age'}
             value={ageValue}
             setValue={setAgeValue}
           />
           <CustomTextInput
             title={'Mobile Number'}
-            placeholder={'Enter your mobile number'}
+            placeholder={'Enter contact number'}
             value={mobileValue}
             setValue={setMobileValue}
           />
@@ -153,7 +152,7 @@ const RequestBloodScreen = () => {
               theme="LIGHT"
               multiple={false}
               mode="BADGE"
-              placeholder="Select your blood group"
+              placeholder="Select blood group"
               textStyle={{...sy.rgRgTTxt}}
               style={{borderColor: 'lightgrey', marginBottom: 15}}
               listMode="SCROLLVIEW"
@@ -168,7 +167,7 @@ const RequestBloodScreen = () => {
           />
           <CustomTextInput
             title={'Location'}
-            placeholder={'Enter your Location'}
+            placeholder={'Enter location'}
             value={locationValue}
             setValue={setLocationValue}
           />

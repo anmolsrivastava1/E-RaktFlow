@@ -7,12 +7,13 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import styling from '../../styles/Events/Events_Style';
+import styling from '../../styles/Profile/Profile_Style';
 import sy from '../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
 // REDUX
 import {useSelector, useDispatch} from 'react-redux';
+import {toggleUserLoggedIn} from '../../redux/reducer';
 
 import BackHeaderArrowBtn from '../../components/BackHeaderArrowBtn';
 import LabelVertical from '../../components/Labels/LabelVertical';
@@ -35,12 +36,7 @@ const ProfileScreen = () => {
       </View>
       <View style={{...styles.bodyWrapper}}>
         {/* Header Details  */}
-        <View
-          style={{
-            ...sy.flexRowAlignSB,
-            marginBottom: 15,
-            marginHorizontal: 15,
-          }}>
+        <View style={{...styles.headerDetails}}>
           <Image
             alt="avatar"
             source={require('../../../assets/images/avatar_logo.png')}
@@ -55,7 +51,7 @@ const ProfileScreen = () => {
           </TouchableOpacity>
         </View>
         {/* Details  */}
-        <View style={{paddingLeft: 10}}>
+        <View style={{...styles.detailsWrapper}}>
           <LabelVertical
             title="Full Name"
             value={`${firstName} ${lastName}`}
@@ -67,6 +63,15 @@ const ProfileScreen = () => {
             isVerified={true}
           />
         </View>
+        {/* Logout btn  */}
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => {
+            dispatch(toggleUserLoggedIn());
+          }}
+          style={{...styles.btnWrap}}>
+          <Text style={{...styles.btn}}>Log Out</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
