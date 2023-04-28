@@ -65,7 +65,9 @@ const DonateBloodScreen = () => {
                 location={item.location}
                 status={item.status}
                 onPressBtn={() => {
-                  navigation.navigate('PatientDonateDetails');
+                  navigation.navigate('PatientDonateDetails', {
+                    uuid: item.uuid,
+                  });
                 }}
               />
             );
