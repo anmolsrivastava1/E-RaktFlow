@@ -11,7 +11,7 @@ class Patient(UUIDMixin, StatusMixin):
     last_name = models.CharField(max_length=10)
     age = models.IntegerField()
     mobile = models.CharField(max_length=10)
-    blood_group = models.CharField(max_length=10)
+    blood_group = models.CharField(max_length=10,null=True,blank=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
