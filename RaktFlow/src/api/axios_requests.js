@@ -123,3 +123,31 @@ export const axiosRaiseOxygenPostRequest = async (data, accessToken) => {
     return Promise.reject(err.response?.data);
   }
 };
+
+export const axiosProvideOxygenListGetRequest = async accessToken => {
+  axios.defaults.headers.common = {Authorization: `Bearer ${accessToken}`};
+  try {
+    const res = await axios({
+      method: 'get',
+      url: `${BASE_URL}/blood/list-requests/oxygen/`,
+    });
+
+    return Promise.resolve(res);
+  } catch (err) {
+    return Promise.reject(err.response?.data);
+  }
+};
+
+export const axiosPatientOxygenDetailGetRequest = async (accessToken, uuid) => {
+  axios.defaults.headers.common = {Authorization: `Bearer ${accessToken}`};
+  try {
+    const res = await axios({
+      method: 'get',
+      url: `${BASE_URL}/blood/get-oxygen-request/oxygen/${uuid}/`,
+    });
+
+    return Promise.resolve(res);
+  } catch (err) {
+    return Promise.reject(err.response?.data);
+  }
+};

@@ -22,6 +22,7 @@ const RequestOxygenScreen = () => {
   const [firstNameValue, setFirstNameValue] = React.useState(null);
   const [lastNameValue, setLastNameValue] = React.useState(null);
   const [ageValue, setAgeValue] = React.useState(null);
+  const [quantityValue, setQuantityValue] = React.useState(null);
   const [mobileValue, setMobileValue] = React.useState(null);
   const [locationValue, setLocationValue] = React.useState(null);
   const [reqDateValue, setReqDateValue] = React.useState(null);
@@ -37,12 +38,13 @@ const RequestOxygenScreen = () => {
       try {
         const response = await axiosRaiseOxygenPostRequest(
           {
+            oxygen_location: locationValue,
+            quantity: quantityValue,
+            requirement_date: reqDateValue,
             first_name: firstNameValue,
             last_name: lastNameValue,
             age: ageValue,
             mobile: mobileValue,
-            location: locationValue,
-            requirement_date: reqDateValue,
           },
           accessToken,
         );
@@ -109,6 +111,12 @@ const RequestOxygenScreen = () => {
             placeholder={'Enter age'}
             value={ageValue}
             setValue={setAgeValue}
+          />
+          <CustomTextInput
+            title={'Quantity'}
+            placeholder={'Enter no. of cylinders'}
+            value={quantityValue}
+            setValue={setQuantityValue}
           />
           <CustomTextInput
             title={'Mobile Number'}

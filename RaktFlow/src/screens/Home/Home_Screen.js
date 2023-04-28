@@ -82,7 +82,7 @@ const HomeScreen = () => {
           {/* LINE TWO */}
           <View style={{...sy.rowSpaceEvenlyMgb20}}>
             <CardHome
-              title="Oxygen Availability"
+              title="Provide Oxygen"
               reqImgPath={require('../../../assets/images/patient2_logo.png')}
               onPress={() => {
                 navigation.navigate('OxygenAvailability');

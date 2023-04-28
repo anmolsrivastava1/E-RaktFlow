@@ -19,6 +19,7 @@ import NearbyHospitalsScreen from '../../screens/Home/Categories/NearbyHospitals
 import GetInformationScreen from '../../screens/Home/Categories/GetInformation_Screen';
 // Other Screens
 import PatientDonateDetailsScreen from '../../screens/Home/PatientDonateDetails_Screen';
+import PatientOxygenDetailsScreen from '../../screens/Home/PatientOxygenDetails_Screen';
 import NotificationsScreen from '../../screens/Home/Notifications_Screen';
 import GetDietPlanScreen from '../../screens/Home/GetDietPlan_Screen';
 
@@ -55,6 +56,10 @@ const HomeTabStackNavigator = () => {
       <Stack.Screen
         name="PatientDonateDetails"
         component={PatientDonateDetailsScreen}
+      />
+      <Stack.Screen
+        name="PatientOxygenDetails"
+        component={PatientOxygenDetailsScreen}
       />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
       <Stack.Screen name="GetDietPlan" component={GetDietPlanScreen} />
