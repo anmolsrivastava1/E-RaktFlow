@@ -4,15 +4,9 @@ import sy from '../../styles/styling';
 
 import SmBtn from '../Buttons/SmBtn';
 
-const CardDonateBlood = props => {
-  const {
-    patientName,
-    bloodGroup,
-    location,
-    status,
-    onPressBtn,
-    isMyRequest = false,
-  } = props;
+const CardNotification = props => {
+  const {onPressBtn} = props;
+
   return (
     <View>
       <View style={{...styles.cardWrapper}}>
@@ -20,32 +14,25 @@ const CardDonateBlood = props => {
           <View
             style={{
               ...styles.statusBar,
-              backgroundColor: status === 'PENDING' ? '#F6C000' : '#20A164',
+              backgroundColor: '#20A164',
             }}></View>
           <View style={{...styles.contentWrapper}}>
             <Text style={{...styles.cardText}}>
-              <Text style={{fontFamily: sy.popSB}}>Patient: </Text>{' '}
-              {patientName}
+              <Text style={{fontFamily: sy.popSB}}>Donor: </Text>
+              {' Ashish Gupta'}
             </Text>
             <Text style={{...styles.cardText}}>
-              <Text style={{fontFamily: sy.popSB}}>Blood Group: </Text>{' '}
-              {bloodGroup}
+              <Text style={{fontFamily: sy.popSB}}>Contact: </Text>
+              {' 7091551907'}
             </Text>
             <Text style={{...styles.cardText}}>
-              <Text style={{fontFamily: sy.popSB}}>Location: </Text> {location}
+              <Text style={{fontFamily: sy.popSB}}>Location: </Text>{' '}
+              {' JSSATE, NOIDA'}
             </Text>
           </View>
         </View>
         <View style={{...styles.rightWrapper}}>
-          {isMyRequest ? (
-            <></>
-          ) : (
-            <SmBtn
-              title={status === 'PENDING' ? 'Donate' : 'Completed'}
-              disable={status === 'PENDING' ? false : true}
-              onPress={onPressBtn}
-            />
-          )}
+          <SmBtn title={'Call'} disable={false} onPress={onPressBtn} />
         </View>
       </View>
     </View>
@@ -87,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardDonateBlood;
+export default CardNotification;

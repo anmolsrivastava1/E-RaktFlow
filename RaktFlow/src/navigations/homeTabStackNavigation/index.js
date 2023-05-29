@@ -14,7 +14,7 @@ import RequestBloodScreen from '../../screens/Home/Categories/RequestBlood_Scree
 import OxygenAvailabilityScreen from '../../screens/Home/Categories/OxygenAvailability_Screen';
 import BloodAvailabilityScreen from '../../screens/Home/Categories/BloodAvailability_Screen';
 import RequestOxygenScreen from '../../screens/Home/Categories/RequestOxygen_Screen';
-import BookAmbulanceScreen from '../../screens/Home/Categories/BoolAmbulance_Screen';
+import BookAmbulanceScreen from '../../screens/Home/Categories/BookAmbulance_Screen';
 import NearbyHospitalsScreen from '../../screens/Home/Categories/NearbyHospitals_Screen';
 import GetInformationScreen from '../../screens/Home/Categories/GetInformation_Screen';
 // Other Screens

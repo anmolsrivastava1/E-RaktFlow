@@ -5,7 +5,14 @@ import sy from '../../styles/styling';
 import SmBtn from '../Buttons/SmBtn';
 
 const CardProvideOxygen = props => {
-  const {patientName, reqDate, location, status, onPressBtn} = props;
+  const {
+    patientName,
+    reqDate,
+    location,
+    status,
+    onPressBtn,
+    isMyRequest = false,
+  } = props;
   return (
     <View>
       <View style={{...styles.cardWrapper}}>
@@ -29,11 +36,15 @@ const CardProvideOxygen = props => {
           </View>
         </View>
         <View style={{...styles.rightWrapper}}>
-          <SmBtn
-            title={status === 'PENDING' ? 'Provide' : 'Completed'}
-            disable={status === 'PENDING' ? false : true}
-            onPress={onPressBtn}
-          />
+          {isMyRequest ? (
+            <></>
+          ) : (
+            <SmBtn
+              title={status === 'PENDING' ? 'Provide' : 'Completed'}
+              disable={status === 'PENDING' ? false : true}
+              onPress={onPressBtn}
+            />
+          )}
         </View>
       </View>
     </View>

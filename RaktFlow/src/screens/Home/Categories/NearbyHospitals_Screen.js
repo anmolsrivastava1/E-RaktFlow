@@ -1,16 +1,44 @@
 import React from 'react';
-import {View, ScrollView, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  FlatList,
+  Text,
+  StyleSheet,
+  Platform,
+  Linking,
+} from 'react-native';
 import styling from '../../../styles/Events/Events_Style';
 import sy from '../../../styles/styling';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {nearbyHospitalsData} from '../../../data/hospitalData';
 import BackHeaderArrowBtn from '../../../components/BackHeaderArrowBtn';
+import CardNearbyHospitals from '../../../components/Cards/CardNearbyHospital';
+import ActivityIndicatorScreen from '../../../components/ActivityIndicators/ActivityIndicatorScreen';
 
 const NearbyHospitalsScreen = () => {
   const navigation = useNavigation();
+  const [data, setData] = React.useState(nearbyHospitalsData);
+  const [isLoadingScreen, setIsLoadingScreen] = React.useState(true);
+
+  const dialContact = mobileNo => {
+    let phoneNumber = '';
+    if (Platform.OS === 'android') {
+      phoneNumber = `tel:${mobileNo}`;
+    } else {
+      phoneNumber = `telprompt:${mobileNo}`;
+    }
+    Linking.openURL(phoneNumber);
+  };
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoadingScreen(false);
+    }, 1000);
+  }, []);
   return (
-    <ScrollView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <View style={{...styles.headerWrapper}}>
         <BackHeaderArrowBtn
           onPress={() => {
@@ -19,12 +47,30 @@ const NearbyHospitalsScreen = () => {
         />
         <Text style={{...sy.md2SbTTxt}}>Nearby Hospitals</Text>
       </View>
-      <View style={{...styles.bodyWrapper}}>
-        <Text style={{...sy.mdMdTTxt, alignSelf: 'center'}}>
-          No hospitals found!
-        </Text>
-      </View>
-    </ScrollView>
+      {isLoadingScreen ? (
+        <ActivityIndicatorScreen />
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={({index, item}) => {
+            console.log(item);
+            return (
+              <CardNearbyHospitals
+                name={item.name}
+                status={item.status}
+                contact={item.contact}
+                location={item.location}
+                onPressBtn={() => {
+                  dialContact(item.contact);
+                }}
+              />
+            );
+          }}
+          keyExtractor={item => item.id}
+          contentContainerStyle={{paddingBottom: 80}} // bottom spacing, end of list
+        />
+      )}
+    </View>
   );
 };
 

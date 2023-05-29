@@ -62,6 +62,29 @@ const ProfileScreen = () => {
             value={`${email}`}
             isVerified={true}
           />
+          <Text style={{...sy.rgMdStTxt, marginTop: 10, marginBottom: 5}}>
+            My Requests
+          </Text>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={{marginVertical: 5}}
+            onPress={() => {
+              navigation.navigate('MyBloodRequest');
+            }}>
+            <Text style={{...sy.smRgHyperLinkTxt, fontSize: 16}}>
+              {'Blood Requests >'}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={{marginVertical: 5}}
+            onPress={() => {
+              navigation.navigate('MyOxygenRequest');
+            }}>
+            <Text style={{...sy.smRgHyperLinkTxt, fontSize: 16}}>
+              {'Oxygen Requests >'}
+            </Text>
+          </TouchableOpacity>
         </View>
         {/* Logout btn  */}
         <TouchableOpacity

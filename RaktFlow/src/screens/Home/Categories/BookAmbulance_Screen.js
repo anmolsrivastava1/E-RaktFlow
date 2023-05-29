@@ -21,7 +21,7 @@ const BookAmbulanceScreen = () => {
       </View>
       <View style={{...styles.bodyWrapper}}>
         <Text style={{...sy.mdMdTTxt, alignSelf: 'center'}}>
-          No ambulance availalble!
+          No ambulance available!
         </Text>
       </View>
     </ScrollView>
